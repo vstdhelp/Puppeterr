@@ -128,6 +128,19 @@ function createKnowledgeModules(providers = {}) {
     };
   }
 
+  if (typeof providers.logSearch === "function") {
+    modules.LOG = {
+      search: async ({ query, limit }) => {
+        const entries = await providers.logSearch(query, limit);
+        const list = Array.isArray(entries) ? entries : [];
+        return {
+          confidence: list.length ? 0.6 : 0.1,
+          results: list.slice(0, limit)
+        };
+      }
+    };
+  }
+
   if (typeof providers.learningContext === "function") {
     modules.LEARNING = {
       context: async ({ query, limit }) => ({

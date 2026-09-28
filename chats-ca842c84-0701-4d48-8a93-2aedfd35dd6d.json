@@ -1,6 +1,1668 @@
 {
-  "selectedChatId": "35e32a2f-fcb7-47bd-b260-138b2a9fb0dc",
+  "selectedChatId": "cbee6852-2f30-4ab5-9d3b-ab13cecac30f",
   "chats": [
+    {
+      "id": "cbee6852-2f30-4ab5-9d3b-ab13cecac30f",
+      "title": "Stress Tester 2026-09-27T16:42:59.525Z",
+      "createdAt": "2026-09-27T16:42:59.535Z",
+      "updatedAt": "2026-09-27T16:42:59.535Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "69cebbc1-9b07-43a4-ad09-4ea82b8987f2",
+      "title": "Stress Tester 2026-09-27T16:42:56.458Z",
+      "createdAt": "2026-09-27T16:42:56.470Z",
+      "updatedAt": "2026-09-27T16:42:56.470Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "82c6be20-9951-4121-90d1-200f45c91765",
+      "title": "Stress Tester 2026-09-27T16:42:53.288Z",
+      "createdAt": "2026-09-27T16:42:53.303Z",
+      "updatedAt": "2026-09-27T16:42:53.303Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "23fa617f-5793-4810-bc87-23d4ea942508",
+      "title": "Stress Tester 2026-09-27T16:42:50.137Z",
+      "createdAt": "2026-09-27T16:42:50.149Z",
+      "updatedAt": "2026-09-27T16:42:50.149Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "ecbc6079-9d42-4e1e-9097-91fa31205dc1",
+      "title": "Stress Tester 2026-09-27T16:42:47.060Z",
+      "createdAt": "2026-09-27T16:42:47.072Z",
+      "updatedAt": "2026-09-27T16:42:47.072Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "f73898e4-33d8-4d1b-904d-813bc0544bc4",
+      "title": "Stress Tester 2026-09-27T16:42:43.986Z",
+      "createdAt": "2026-09-27T16:42:44.001Z",
+      "updatedAt": "2026-09-27T16:42:44.001Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "1c250701-0217-4f57-85e8-226d7c46ef90",
+      "title": "Stress Tester 2026-09-27T16:42:40.901Z",
+      "createdAt": "2026-09-27T16:42:40.911Z",
+      "updatedAt": "2026-09-27T16:42:40.911Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "54a8a03f-36a7-42ee-a69b-4da3af352902",
+      "title": "Stress Tester 2026-09-27T16:42:37.610Z",
+      "createdAt": "2026-09-27T16:42:37.627Z",
+      "updatedAt": "2026-09-27T16:42:37.627Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "a68bcae6-e114-4e15-9bb2-e143c77cb191",
+      "title": "Stress Tester 2026-09-27T16:42:34.403Z",
+      "createdAt": "2026-09-27T16:42:34.543Z",
+      "updatedAt": "2026-09-27T16:42:34.543Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "d3f162cb-ec59-4625-b06c-4093c3bf486b",
+      "title": "Stress Tester 2026-09-27T16:42:31.200Z",
+      "createdAt": "2026-09-27T16:42:31.343Z",
+      "updatedAt": "2026-09-27T16:42:31.343Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "e135e1f6-7cf5-4bb8-9118-0ab0e3f6bdb8",
+      "title": "Stress Tester 2026-09-27T16:42:28.128Z",
+      "createdAt": "2026-09-27T16:42:28.138Z",
+      "updatedAt": "2026-09-27T16:42:28.138Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "fb9ffd91-f2e2-4df5-8731-ecf05cc12ffc",
+      "title": "Stress Tester 2026-09-27T16:42:25.057Z",
+      "createdAt": "2026-09-27T16:42:25.071Z",
+      "updatedAt": "2026-09-27T16:42:25.071Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "e09faec1-d0ff-4d21-aaa3-33040e90cbf3",
+      "title": "Stress Tester 2026-09-27T16:42:21.990Z",
+      "createdAt": "2026-09-27T16:42:22.000Z",
+      "updatedAt": "2026-09-27T16:42:22.000Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "9e0e6ac0-d6c7-4eb5-bd22-cd2d5a9cffd2",
+      "title": "Stress Tester 2026-09-27T16:42:18.915Z",
+      "createdAt": "2026-09-27T16:42:18.925Z",
+      "updatedAt": "2026-09-27T16:42:18.925Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "5121d498-9ddc-4671-bba6-91fc2463dff3",
+      "title": "Stress Tester 2026-09-27T16:42:15.839Z",
+      "createdAt": "2026-09-27T16:42:15.850Z",
+      "updatedAt": "2026-09-27T16:42:15.850Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "7a405ea9-0b29-4d07-a3ee-7b4757a1586f",
+      "title": "Stress Tester 2026-09-27T16:42:12.747Z",
+      "createdAt": "2026-09-27T16:42:12.761Z",
+      "updatedAt": "2026-09-27T16:42:12.761Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "c4222897-532c-40f0-9b3c-8bc3833098c3",
+      "title": "Stress Tester 2026-09-27T16:42:09.678Z",
+      "createdAt": "2026-09-27T16:42:09.688Z",
+      "updatedAt": "2026-09-27T16:42:09.688Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "5cb975de-e618-4375-8a76-1e11058752e9",
+      "title": "Stress Tester 2026-09-27T16:41:13.180Z",
+      "createdAt": "2026-09-27T16:41:13.378Z",
+      "updatedAt": "2026-09-27T16:42:06.407Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser find vite's readme on github and just tell me how to install it\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"C\",\n  \"bankIndex\": 12\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-27T16:41:13.579Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "INSTINCT REPORT\nTask: find vite's readme on github and just tell me how to install it At the very end of your final message, include these exact markers and a machine-readable diagnosis: <<PUPPETERR_FINAL_ANSWER>> Your normal final answer here. <<END_PUPPETERR_FINAL_ANSWER>> <<PUPPETERR_SELF_DIAGNOSIS_JSON>> { summary : short summary of what happened , completed : true, issues : [ { type : navigation_failure , evidence\nCurrent Subtask: Planner step: goto https://github.com/vitejs/vite/blob/main/README.md | The previous goto redirected unexpectedly to Google Business Profile. I'll try navigating directly to the Vite repository README on GitHub.\nPage Classification: unknown_page\nGoal Progress: 0% (0/1)\nSubtask Status: in_progress\nEvidence Strength: low\nRelevant Anchors:\n1. Skip to content (source=page href=https://github.com/vitejs/vite/blob/main/README.md#start-of-content) | lexical overlap with the active subtask\n2. Step 3 [90%]: goto:ok — The previous goto redirected unexpectedly to Google Business (source=task_log) | lexical overlap with the active subtask\n3. Step 2 [95%]: goto:ok — I know Vite's GitHub repo is github.com/vitejs/vite. I'll go (source=task_log) | lexical overlap with the active subtask\n4. Skip to content Navigation Menu Platform Solutions Resources Open Source Enterprise Pricing Sign in Sign up vitejs / vite Public Sponsor Notifications Fork 8.8k Star 83k Code Issues 501 Pull requests 286 Discussions Actions Projects Security and quality 19 Insights Files main .github docs packages patches playground scripts .editorconfig .git-blame-ignore-revs .gitattributes .gitignore .oxfmtrc.json CONTRIBUTING.md L (source=page) | lexical overlap with the active subtask\n5. bundles your code with Rolldown, pre-configured to output highly optimized static assets for production. In addition, Vite is highly extensible via its Plugin API and JavaScript API with full typing support. Read the Docs to Learn More. Packages Package Version (click for changelogs) vite @vitejs/plugin-legacy create-vite Contribution See Contributing Guide. License MIT. Sponsors (source=page) | lexical overlap with the active subtask\n6. IssuesPlan and track work (source=page href=https://github.com/features/issues) | lexical overlap with the active subtask\n7. GitHub Advanced SecurityFind and fix vulnerabilities (source=page href=https://github.com/security/advanced-security) | lexical overlap with the active subtask\n8. Code securitySecure your code as you build (source=page href=https://github.com/security/advanced-security/code-security) | lexical overlap with the active subtask\n9. Small and medium teams (source=page href=https://github.com/team) | lexical overlap with the active subtask\n10. https://github.com/ (source=page href=https://github.com/) | lexical overlap with the active subtask\n11. Sign in (source=page href=https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fvitejs%2Fvite%2Fblob%2Fmain%2FREADME.md) | lexical overlap with the active subtask\n12. GitHub CopilotWrite better code with AI (source=page href=https://github.com/features/copilot) | lexical overlap with the active subtask\nNearby Context:\n1. ICENSE README.md eslint.config.js netlify.toml pa",
+          "ts": "2026-09-27T16:42:06.407Z",
+          "instinct_report": true,
+          "step": 5,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "9fc49766-be98-470e-a2bd-63665f113729",
+      "title": "Stress Tester 2026-09-27T16:41:09.681Z",
+      "createdAt": "2026-09-27T16:41:09.757Z",
+      "updatedAt": "2026-09-27T16:41:09.757Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "fbd0b909-be62-4d58-90d4-8b762e7c90f3",
+      "title": "Stress Tester 2026-09-27T16:41:06.357Z",
+      "createdAt": "2026-09-27T16:41:06.593Z",
+      "updatedAt": "2026-09-27T16:41:06.593Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "53bcb884-047d-451e-8b86-5d245f3132c2",
+      "title": "Stress Tester 2026-09-27T16:41:03.083Z",
+      "createdAt": "2026-09-27T16:41:03.131Z",
+      "updatedAt": "2026-09-27T16:41:03.131Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "c6cc240e-99d7-436b-88b6-b142acb4e071",
+      "title": "Stress Tester 2026-09-27T16:40:59.904Z",
+      "createdAt": "2026-09-27T16:40:59.948Z",
+      "updatedAt": "2026-09-27T16:40:59.948Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "0df0117e-e900-462a-8d19-3996da26845e",
+      "title": "Stress Tester 2026-09-27T16:40:56.551Z",
+      "createdAt": "2026-09-27T16:40:56.585Z",
+      "updatedAt": "2026-09-27T16:40:56.585Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "65010e02-aa61-48fc-a1bd-b901e72609e3",
+      "title": "Stress Tester 2026-09-27T16:40:53.327Z",
+      "createdAt": "2026-09-27T16:40:53.358Z",
+      "updatedAt": "2026-09-27T16:40:53.358Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "60843797-87a2-4b48-b63b-a29c9262841a",
+      "title": "Stress Tester 2026-09-27T16:40:49.901Z",
+      "createdAt": "2026-09-27T16:40:49.967Z",
+      "updatedAt": "2026-09-27T16:40:49.967Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "382316a0-5465-41ba-bde6-bfa55745d784",
+      "title": "Stress Tester 2026-09-27T16:40:46.824Z",
+      "createdAt": "2026-09-27T16:40:46.837Z",
+      "updatedAt": "2026-09-27T16:40:46.837Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "820daa62-e663-4df3-919b-ac78e2c88ae0",
+      "title": "Stress Tester 2026-09-27T16:40:43.751Z",
+      "createdAt": "2026-09-27T16:40:43.765Z",
+      "updatedAt": "2026-09-27T16:40:43.765Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "7407f0df-5f3d-468d-90db-4f2c84d394c7",
+      "title": "Stress Tester 2026-09-27T16:40:40.675Z",
+      "createdAt": "2026-09-27T16:40:40.685Z",
+      "updatedAt": "2026-09-27T16:40:40.685Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "3da8fd2c-3731-4c6a-a598-2276d9c76b87",
+      "title": "Stress Tester 2026-09-27T16:40:37.605Z",
+      "createdAt": "2026-09-27T16:40:37.616Z",
+      "updatedAt": "2026-09-27T16:40:37.616Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "4135b36a-fa7d-4583-a281-c892c383727e",
+      "title": "Stress Tester 2026-09-27T16:38:57.835Z",
+      "createdAt": "2026-09-27T16:38:57.864Z",
+      "updatedAt": "2026-09-27T16:40:34.272Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser can you check what's the newest node version and how do i get it\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"A\",\n  \"bankIndex\": 0\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-27T16:38:58.030Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "INSTINCT REPORT\nTask: can you check what's the newest node version and how do i get it At the very end of your final message, include these exact markers and a machine-readable diagnosis: <<PUPPETERR_FINAL_ANSWER>> Your normal final answer here. <<END_PUPPETERR_FINAL_ANSWER>> <<PUPPETERR_SELF_DIAGNOSIS_JSON>> { summary : short summary of what happened , completed : true, issues : [ { type : navigation_failure , evidenc\nCurrent Subtask: Planner step: getAllText main | On the official Node.js download page. I can see v24.21.0 LTS mentioned. Let me extract the page text to get full details on the newest version and download methods.\nPage Classification: unknown_page\nGoal Progress: 0% (0/1)\nSubtask Status: in_progress\nEvidence Strength: high\nRelevant Anchors:\n1. latest Node.js version (source=page href=https://nodejs.org/en/download/current) confidence=1.00 | direct link to the latest Node.js version\n2. Windows Installer (.msi) (source=page href=https://nodejs.org/dist/v24.21.0/node-v24.21.0-x64.msi) confidence=1.00 | link to the Windows Installer for the latest LTS version\n3. Standalone Binary (.zip) (source=page href=https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip) confidence=1.00 | link to the Standalone Binary for the latest LTS version\n4. Step 4 [95%]: getAllText:ok — On the official Node.js download page. I can see v24.21.0 LT (source=task_log) | lexical overlap with the active subtask\n5. Skip to content Learn About Download Blog Docs Beta Docs Contribute Courses Start typing... ⌘ K Download Node.js® Get Node.js® v24.21.0 LTS for Windows using Docker with npm Info Want new features sooner? Get the latest Node.js version instead and try the latest improvements! # Docker has specific installation instructions for each operating system. # Please refer to the official documentation at https://docker.com/g (source=page) | lexical overlap with the active subtask\n6. Or get a prebuilt Node.js® for Windows running a x64 architecture. Windows Installer (.msi) Standalone Binary (.zip) Read the changelog or blog post for this version. Learn more about Node.js releases, including the release schedule and LTS status. Learn how to verify signed SHASUMS. Looking for Node.js source? Download a signed Node.js source tarball. Check out our nightly binaries or all previous releases or the u (source=page) | lexical overlap with the active subtask\n7. et-started/ # Pull the Node.js Docker image: docker pull node:24-slim # Create a Node.js container and start a Shell session: docker run -it --rm --entrypoint sh node:24-slim # Verify the Node.js version: node -v # Should print \"v24.21.0\". # Verify npm version: npm -v # Should print \"11.19.0\". PowerShell Copy to clipboard Docker is a containerization platform. If you encounter any issues please visit Docker's website (source=page) | lexical overlap with the active subtask\n8. nofficial binaries for other platforms. Proudly supported by the partners below: We are able to serve Node.js's downloads and maintain our infrastructure proudly due to the support of these partners, and more. v24.21.0 Latest LTS v26.10.0 Latest Release Copyright OpenJS Foundation and Node.js contributors. All rights reserved. The Ope",
+          "ts": "2026-09-27T16:40:34.272Z",
+          "instinct_report": true,
+          "step": 5,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "95cf6b82-c838-4db8-b788-a817f149baba",
+      "title": "Stress Tester 2026-09-27T16:00:32.551Z",
+      "createdAt": "2026-09-27T16:00:32.561Z",
+      "updatedAt": "2026-09-27T16:00:32.561Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "924d1567-9472-4aee-98d9-486574a806b8",
+      "title": "Stress Tester 2026-09-27T16:00:29.485Z",
+      "createdAt": "2026-09-27T16:00:29.496Z",
+      "updatedAt": "2026-09-27T16:00:29.496Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "125317db-15ed-422a-9bee-0ac46a4d1472",
+      "title": "Stress Tester 2026-09-27T16:00:26.312Z",
+      "createdAt": "2026-09-27T16:00:26.335Z",
+      "updatedAt": "2026-09-27T16:00:26.335Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "12618bb3-fe69-4280-9738-48f860a10c04",
+      "title": "Stress Tester 2026-09-27T16:00:23.213Z",
+      "createdAt": "2026-09-27T16:00:23.225Z",
+      "updatedAt": "2026-09-27T16:00:23.225Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "35029d0a-00e2-4c96-ba26-eddc27cf9ddb",
+      "title": "Stress Tester 2026-09-27T16:00:20.139Z",
+      "createdAt": "2026-09-27T16:00:20.150Z",
+      "updatedAt": "2026-09-27T16:00:20.150Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "2f937ae6-37c7-4f01-b01d-b61db53701e0",
+      "title": "Stress Tester 2026-09-27T16:00:17.037Z",
+      "createdAt": "2026-09-27T16:00:17.048Z",
+      "updatedAt": "2026-09-27T16:00:17.048Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "954d048b-1212-4b2e-bbee-78727adcf8e6",
+      "title": "Stress Tester 2026-09-27T16:00:13.953Z",
+      "createdAt": "2026-09-27T16:00:13.963Z",
+      "updatedAt": "2026-09-27T16:00:13.963Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "12109ace-ca58-41b9-ad50-1285bf92eace",
+      "title": "Stress Tester 2026-09-27T15:59:45.748Z",
+      "createdAt": "2026-09-27T15:59:45.757Z",
+      "updatedAt": "2026-09-27T15:59:45.757Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "ac113023-787f-4b8c-b92d-248e9464431b",
+      "title": "Stress Tester 2026-09-27T15:59:42.683Z",
+      "createdAt": "2026-09-27T15:59:42.692Z",
+      "updatedAt": "2026-09-27T15:59:42.692Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "65d241a8-8e56-484e-8d26-4d2883132f72",
+      "title": "Stress Tester 2026-09-27T15:59:39.616Z",
+      "createdAt": "2026-09-27T15:59:39.626Z",
+      "updatedAt": "2026-09-27T15:59:39.626Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "fef62c74-e14a-4374-858f-080829728b33",
+      "title": "Stress Tester 2026-09-27T15:59:36.553Z",
+      "createdAt": "2026-09-27T15:59:36.563Z",
+      "updatedAt": "2026-09-27T15:59:36.563Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "9789cf26-5e2c-4de6-ae73-8bb62d4afaf4",
+      "title": "Stress Tester 2026-09-27T15:59:33.477Z",
+      "createdAt": "2026-09-27T15:59:33.486Z",
+      "updatedAt": "2026-09-27T15:59:33.486Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "50cb91b1-7509-45a6-8bac-bb28c2553cd4",
+      "title": "Stress Tester 2026-09-27T15:59:30.399Z",
+      "createdAt": "2026-09-27T15:59:30.408Z",
+      "updatedAt": "2026-09-27T15:59:30.408Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "c7ab3aa3-8a0c-48af-a2a4-4bbb93c987c8",
+      "title": "Stress Tester 2026-09-27T15:59:27.333Z",
+      "createdAt": "2026-09-27T15:59:27.342Z",
+      "updatedAt": "2026-09-27T15:59:27.342Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "9747f4b1-12e6-4b4f-800a-3aaa5a5bfcab",
+      "title": "Stress Tester 2026-09-27T15:59:24.172Z",
+      "createdAt": "2026-09-27T15:59:24.196Z",
+      "updatedAt": "2026-09-27T15:59:24.196Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "4aa79e2e-4fc4-4003-a3c7-7f5127ab5ec0",
+      "title": "Stress Tester 2026-09-27T15:58:49.881Z",
+      "createdAt": "2026-09-27T15:58:49.919Z",
+      "updatedAt": "2026-09-27T15:58:49.919Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "30b60c68-7ecf-4b9e-a199-f2711a372faa",
+      "title": "Stress Tester 2026-09-27T15:58:46.804Z",
+      "createdAt": "2026-09-27T15:58:46.818Z",
+      "updatedAt": "2026-09-27T15:58:46.818Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "a1f8f659-c444-48b3-88b0-304de4058a9c",
+      "title": "Stress Tester 2026-09-27T15:58:43.621Z",
+      "createdAt": "2026-09-27T15:58:43.641Z",
+      "updatedAt": "2026-09-27T15:58:43.641Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "6413fc98-4a27-475e-9e8e-3a80cd9c88de",
+      "title": "Stress Tester 2026-09-27T15:58:40.306Z",
+      "createdAt": "2026-09-27T15:58:40.376Z",
+      "updatedAt": "2026-09-27T15:58:40.376Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "1b4efaeb-aa11-4b6d-b23b-127c93e90924",
+      "title": "Stress Tester 2026-09-27T15:58:37.066Z",
+      "createdAt": "2026-09-27T15:58:37.118Z",
+      "updatedAt": "2026-09-27T15:58:37.118Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "d727eb27-9c4c-4c18-9309-9cf8b50c0351",
+      "title": "Stress Tester 2026-09-27T15:58:33.627Z",
+      "createdAt": "2026-09-27T15:58:33.680Z",
+      "updatedAt": "2026-09-27T15:58:33.680Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "630999b0-9fad-40bb-bc9d-3fe315b6e047",
+      "title": "Stress Tester 2026-09-27T15:58:30.556Z",
+      "createdAt": "2026-09-27T15:58:30.566Z",
+      "updatedAt": "2026-09-27T15:58:30.566Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "5524cc5d-83b0-4aa0-9fb0-d00b5105de0e",
+      "title": "Stress Tester 2026-09-27T15:58:27.394Z",
+      "createdAt": "2026-09-27T15:58:27.413Z",
+      "updatedAt": "2026-09-27T15:58:27.413Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "e8353b48-6ad3-4fd4-b933-cb72b2386f71",
+      "title": "Stress Tester 2026-09-27T15:58:24.309Z",
+      "createdAt": "2026-09-27T15:58:24.326Z",
+      "updatedAt": "2026-09-27T15:58:24.326Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "3d8d7fa0-f945-4d60-8c10-2c42f4079f35",
+      "title": "Stress Tester 2026-09-27T15:58:21.099Z",
+      "createdAt": "2026-09-27T15:58:21.140Z",
+      "updatedAt": "2026-09-27T15:58:21.140Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "814ba6dd-e49a-468d-8452-2ef330bb7cb9",
+      "title": "Stress Tester 2026-09-27T15:58:17.968Z",
+      "createdAt": "2026-09-27T15:58:17.982Z",
+      "updatedAt": "2026-09-27T15:58:17.982Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "73f83a0e-0a0f-43f4-8363-25519c7e8cbb",
+      "title": "Stress Tester 2026-09-27T15:58:14.851Z",
+      "createdAt": "2026-09-27T15:58:14.891Z",
+      "updatedAt": "2026-09-27T15:58:14.891Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "9b679e3a-f11b-4f58-a61c-c7178a9ee5ef",
+      "title": "Stress Tester 2026-09-27T15:58:11.773Z",
+      "createdAt": "2026-09-27T15:58:11.782Z",
+      "updatedAt": "2026-09-27T15:58:11.782Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "2eaf99e0-26f6-4e4a-aa7b-9730fe453746",
+      "title": "Stress Tester 2026-09-27T15:58:08.699Z",
+      "createdAt": "2026-09-27T15:58:08.709Z",
+      "updatedAt": "2026-09-27T15:58:08.709Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "e250cbf2-52f0-48a9-92e1-3f4ea22df41b",
+      "title": "Stress Tester 2026-09-27T15:55:32.844Z",
+      "createdAt": "2026-09-27T15:55:33.842Z",
+      "updatedAt": "2026-09-27T15:58:04.484Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser can you check what's the newest node version and how do i get it\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"A\",\n  \"bankIndex\": 0\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-27T15:55:34.119Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "Reasoner summary (step 5):\nPrioritize the strongest best grounded evidence: \"Skip to content Learn About Download Blog Docs Beta Docs Contribute Courses Start typing... ⌘ K Run JavaScript Everywher\". Keep the next action tightly scoped to the current page state.\nFocus: current page\nRisk: medium\nCaution: keep the next step small",
+          "ts": "2026-09-27T15:58:04.484Z",
+          "reasoner_summary": true,
+          "step": 5,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "5dd86a58-9bb2-4021-91e3-fbb3f5bd2bbc",
+      "title": "Stress Tester 2026-09-27T15:45:01.835Z",
+      "createdAt": "2026-09-27T15:45:01.863Z",
+      "updatedAt": "2026-09-27T15:45:01.942Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser can you check what's the newest node version and how do i get it\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"A\",\n  \"bankIndex\": 0\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-27T15:45:01.942Z",
+          "command": "browser"
+        }
+      ]
+    },
+    {
+      "id": "94075003-9938-4373-8422-e41bf8a75234",
+      "title": "Stress Tester 2026-09-26T19:31:46.932Z",
+      "createdAt": "2026-09-26T19:31:46.942Z",
+      "updatedAt": "2026-09-26T19:31:46.942Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "b0e53d09-3780-4397-b34a-f3c4fc12b045",
+      "title": "Stress Tester 2026-09-26T19:31:43.829Z",
+      "createdAt": "2026-09-26T19:31:43.854Z",
+      "updatedAt": "2026-09-26T19:31:43.854Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "e6b2b0a8-609f-4b56-b86c-c31f3c0afd34",
+      "title": "Stress Tester 2026-09-26T19:31:40.688Z",
+      "createdAt": "2026-09-26T19:31:40.698Z",
+      "updatedAt": "2026-09-26T19:31:40.698Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "9c2715af-0438-4c08-ab79-71c6e5a00623",
+      "title": "Stress Tester 2026-09-26T19:31:37.626Z",
+      "createdAt": "2026-09-26T19:31:37.637Z",
+      "updatedAt": "2026-09-26T19:31:37.637Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "34c4be8e-0255-42b5-bd16-8c4a7367952c",
+      "title": "Stress Tester 2026-09-26T19:31:34.562Z",
+      "createdAt": "2026-09-26T19:31:34.571Z",
+      "updatedAt": "2026-09-26T19:31:34.571Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "9fdf5fde-c75a-40e9-aa71-50e6c95dded6",
+      "title": "Stress Tester 2026-09-26T19:31:31.494Z",
+      "createdAt": "2026-09-26T19:31:31.504Z",
+      "updatedAt": "2026-09-26T19:31:31.504Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "c6e6475e-bdd3-41bf-af52-f2a336234274",
+      "title": "Stress Tester 2026-09-26T19:31:28.383Z",
+      "createdAt": "2026-09-26T19:31:28.393Z",
+      "updatedAt": "2026-09-26T19:31:28.393Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "cdf362a3-eeba-4113-80fd-d39d0ee62684",
+      "title": "Stress Tester 2026-09-26T19:31:25.322Z",
+      "createdAt": "2026-09-26T19:31:25.332Z",
+      "updatedAt": "2026-09-26T19:31:25.332Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "844a61de-ec72-44b0-87be-f66a2dc2efdc",
+      "title": "Stress Tester 2026-09-26T19:31:22.249Z",
+      "createdAt": "2026-09-26T19:31:22.268Z",
+      "updatedAt": "2026-09-26T19:31:22.268Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "590aada7-0aee-4f67-80e7-e568b39b9d68",
+      "title": "Stress Tester 2026-09-26T19:31:19.174Z",
+      "createdAt": "2026-09-26T19:31:19.183Z",
+      "updatedAt": "2026-09-26T19:31:19.183Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "a2df54eb-60f7-4798-ae25-035da28c3871",
+      "title": "Stress Tester 2026-09-26T19:31:16.110Z",
+      "createdAt": "2026-09-26T19:31:16.119Z",
+      "updatedAt": "2026-09-26T19:31:16.119Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "1b96665e-0d92-4d89-92fe-389bc47c6a95",
+      "title": "Stress Tester 2026-09-26T19:31:13.019Z",
+      "createdAt": "2026-09-26T19:31:13.029Z",
+      "updatedAt": "2026-09-26T19:31:13.029Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "729399b1-c467-454b-a944-6d4594e6a97c",
+      "title": "Stress Tester 2026-09-26T19:31:09.949Z",
+      "createdAt": "2026-09-26T19:31:09.958Z",
+      "updatedAt": "2026-09-26T19:31:09.958Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "310b1558-5e11-4249-8eb5-19e4ec5c1e52",
+      "title": "Stress Tester 2026-09-26T19:31:06.874Z",
+      "createdAt": "2026-09-26T19:31:06.884Z",
+      "updatedAt": "2026-09-26T19:31:06.884Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "ddcf2f63-dd0d-48be-a0bd-11e67bbb19d1",
+      "title": "Stress Tester 2026-09-26T19:31:03.809Z",
+      "createdAt": "2026-09-26T19:31:03.821Z",
+      "updatedAt": "2026-09-26T19:31:03.821Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "c2f529ae-aea1-4591-8166-1a1a731f4c8a",
+      "title": "Stress Tester 2026-09-26T19:31:00.748Z",
+      "createdAt": "2026-09-26T19:31:00.757Z",
+      "updatedAt": "2026-09-26T19:31:00.757Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "389cd219-8a5b-4d41-9981-680b27e354bf",
+      "title": "Stress Tester 2026-09-26T19:30:57.596Z",
+      "createdAt": "2026-09-26T19:30:57.605Z",
+      "updatedAt": "2026-09-26T19:30:57.605Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "0f981fc1-8c05-4be7-8cd8-c8c3ddacfe32",
+      "title": "Stress Tester 2026-09-26T19:30:54.525Z",
+      "createdAt": "2026-09-26T19:30:54.534Z",
+      "updatedAt": "2026-09-26T19:30:54.534Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "211d60fa-b006-43b8-9d97-ebd3eb92282d",
+      "title": "Stress Tester 2026-09-26T19:30:51.461Z",
+      "createdAt": "2026-09-26T19:30:51.471Z",
+      "updatedAt": "2026-09-26T19:30:51.471Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "34232e25-df4b-4011-b490-bebc60b701e8",
+      "title": "Stress Tester 2026-09-26T19:30:48.391Z",
+      "createdAt": "2026-09-26T19:30:48.402Z",
+      "updatedAt": "2026-09-26T19:30:48.402Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "462f168b-b558-4715-88b8-1f3b6cc82933",
+      "title": "Stress Tester 2026-09-26T19:30:45.331Z",
+      "createdAt": "2026-09-26T19:30:45.340Z",
+      "updatedAt": "2026-09-26T19:30:45.340Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "b00b8b49-b8c4-45a5-b036-9de5ee6c26cd",
+      "title": "Stress Tester 2026-09-26T19:30:42.234Z",
+      "createdAt": "2026-09-26T19:30:42.244Z",
+      "updatedAt": "2026-09-26T19:30:42.244Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "45ae9ab7-dbe6-448a-b0db-13f4f1b9b5b4",
+      "title": "Stress Tester 2026-09-26T19:30:39.174Z",
+      "createdAt": "2026-09-26T19:30:39.183Z",
+      "updatedAt": "2026-09-26T19:30:39.183Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "e66db042-ae53-4f98-b76c-9e272d900be8",
+      "title": "Stress Tester 2026-09-26T19:30:36.115Z",
+      "createdAt": "2026-09-26T19:30:36.124Z",
+      "updatedAt": "2026-09-26T19:30:36.124Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "a3f0d219-23a5-4ae8-98f7-29d6a1d51b9b",
+      "title": "Stress Tester 2026-09-26T19:30:32.995Z",
+      "createdAt": "2026-09-26T19:30:33.006Z",
+      "updatedAt": "2026-09-26T19:30:33.006Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "6ebff1a2-5861-4a1c-a88d-e545e9d117ea",
+      "title": "Stress Tester 2026-09-26T19:30:16.757Z",
+      "createdAt": "2026-09-26T19:30:16.766Z",
+      "updatedAt": "2026-09-26T19:30:28.782Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser look up saturn v on wikipedia and tell me when it launched\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"B\",\n  \"bankIndex\": 4\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-26T19:30:16.852Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "The agent encountered internal planner errors and had to recover. Suggest retrying or checking model availability.\nSuggestion: Retry the operation or switch planner models.",
+          "ts": "2026-09-26T19:30:27.002Z",
+          "log_summary": true,
+          "completed": false
+        },
+        {
+          "role": "assistant",
+          "content": "The agent encountered internal planner errors and had to recover. Suggest retrying or checking model availability.\nSuggestion: Retry the operation or switch planner models.",
+          "ts": "2026-09-26T19:30:28.782Z",
+          "log_summary": true,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "2d57ea0b-ca61-4f9d-9a17-616183ce2920",
+      "title": "Stress Tester 2026-09-26T19:30:13.659Z",
+      "createdAt": "2026-09-26T19:30:13.669Z",
+      "updatedAt": "2026-09-26T19:30:13.669Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "80c5f511-bd07-4256-a6f0-3466338a613a",
+      "title": "Stress Tester 2026-09-26T19:29:58.579Z",
+      "createdAt": "2026-09-26T19:29:58.597Z",
+      "updatedAt": "2026-09-26T19:30:10.678Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser go look at hacker news and tell me what's the top story right now\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"A\",\n  \"bankIndex\": 2\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-26T19:29:58.661Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "The agent encountered internal planner errors and had to recover. Suggest retrying or checking model availability.\nSuggestion: Retry the operation or switch planner models.",
+          "ts": "2026-09-26T19:30:09.018Z",
+          "log_summary": true,
+          "completed": false
+        },
+        {
+          "role": "assistant",
+          "content": "The agent encountered internal planner errors and had to recover. Suggest retrying or checking model availability.\nSuggestion: Retry the operation or switch planner models.",
+          "ts": "2026-09-26T19:30:10.678Z",
+          "log_summary": true,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "93d151e4-fac9-49ec-97c9-b2e54f45febd",
+      "title": "Stress Tester 2026-09-26T19:29:55.515Z",
+      "createdAt": "2026-09-26T19:29:55.525Z",
+      "updatedAt": "2026-09-26T19:29:55.525Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": []
+    },
+    {
+      "id": "82defc0c-660e-4c16-ad1e-3711a9608c6d",
+      "title": "Stress Tester 2026-09-26T19:29:39.007Z",
+      "createdAt": "2026-09-26T19:29:39.035Z",
+      "updatedAt": "2026-09-26T19:29:51.590Z",
+      "models": {
+        "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "reasoner": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "vision": "@cf/meta/llama-3.2-11b-vision-instruct"
+      },
+      "modelParams": {
+        "temperature": 0.3,
+        "routerThinking": true
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "/browser can you check what's the newest node version and how do i get it\n\nAt the very end of your final message, include these exact markers and a machine-readable diagnosis:\n\n<<PUPPETERR_FINAL_ANSWER>>\n\nYour normal final answer here.\n\n<<END_PUPPETERR_FINAL_ANSWER>>\n\n<<PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\n{\n  \"summary\": \"short summary of what happened\",\n  \"completed\": true,\n  \"issues\": [\n    {\n      \"type\": \"navigation_failure\",\n      \"evidence\": \"optional evidence\"\n    }\n  ],\n  \"uncertainty\": \"what remained uncertain, if anything\",\n  \"fallbacks\": [\n    \"fallbacks or workarounds you used\"\n  ],\n  \"notes\": \"any planner/vision/selector/supervisor observations\",\n  \"tier\": \"A\",\n  \"bankIndex\": 0\n}\n\n<<END_PUPPETERR_SELF_DIAGNOSIS_JSON>>\n\nUse an empty issues array if nothing went wrong.",
+          "ts": "2026-09-26T19:29:39.105Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "The agent encountered internal planner errors and had to recover. Suggest retrying or checking model availability.\nSuggestion: Retry the operation or switch planner models.",
+          "ts": "2026-09-26T19:29:49.869Z",
+          "log_summary": true,
+          "completed": false
+        },
+        {
+          "role": "assistant",
+          "content": "The agent encountered internal planner errors and had to recover. Suggest retrying or checking model availability.\nSuggestion: Retry the operation or switch planner models.",
+          "ts": "2026-09-26T19:29:51.590Z",
+          "log_summary": true,
+          "completed": false
+        }
+      ]
+    },
     {
       "id": "f1326706-746c-4734-84f1-4bf2e7f3aa0d",
       "title": "Jit Tripping",
@@ -107,7 +1769,7 @@
       "id": "35e32a2f-fcb7-47bd-b260-138b2a9fb0dc",
       "title": "Laughing Out Loud",
       "createdAt": "2026-08-25T22:22:22.069Z",
-      "updatedAt": "2026-09-09T22:29:29.341Z",
+      "updatedAt": "2026-09-26T19:18:46.976Z",
       "models": {
         "router": "@cf/qwen/qwen2.5-coder-32b-instruct",
         "planner": "@cf/qwen/qwen2.5-coder-32b-instruct",
@@ -2372,6 +4034,60 @@
           "role": "assistant",
           "content": "Ah, gotcha! Let's try again then.\n\n**Visible Text:**\n- None\n\n**Objects and People:**\n- An Asian man is the main subject of the image.\n- He is giving a thumbs up with a big smile on his face.\n- He is standing in front of a blurred background.\n\n**Colors:**\n- The dominant color is a light blue background.\n- The man's clothing is mostly black and white, with some gray accents.\n\n**Detailed Summary:**\nThe image features an Asian man standing in front of a blurred light blue background. He is giving a thumbs up with a big smile on his face, looking very happy and confident. His outfit consists mainly of black and white clothing with some gray accents, adding a sleek and modern look to the photo.\n\nSo, to answer your question: This is an Asian guy doing a thumbs up. He looks awesome and totally lit! :thumbsup: :smile:",
           "ts": "2026-09-09T22:29:29.341Z",
+          "completed": true
+        },
+        {
+          "role": "user",
+          "content": "hello",
+          "ts": "2026-09-23T22:45:34.533Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hey there! How's it going? Anything fun on your plate today? :wave:",
+          "ts": "2026-09-23T22:45:36.484Z",
+          "completed": true
+        },
+        {
+          "role": "user",
+          "content": "what emojis are there can you list 300",
+          "ts": "2026-09-23T22:45:58.582Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure thing! Here’s a list of 300 emojis for you:\n\n1. 😀 2. 😃 3. 😄 4.😁 5.😆 6.😅 7.🤣 8.😂 9.😊 10.😇\n11.🙂 12.🙃 13.😉 14.😌 15.😍 16.🥰 17.😘 18.😗 19.😙 20.😚\n21.😋 22.😛 23.😝 24.😜 25.🤪 26.🤨 27.🧐 28.🤓 29.😎 30.🤩\n31.🥳 32.😏 33.😒 34.😞 35.😔 36.😟 37.😕 38.🙁 39.☹️ 40.😣\n41.😖 42.😫 43.😩 44.🥺 45.😢 46.😭 47.😤 48.😠 49.😡 50.🤬\n51.🤯 52.😳 53.😱 54.😨 55.😰 56.😥 57.😓 58.🤗 59.🤔 60.🤭\n61.🤫 62.🤥 63.😶 64.😐 65.😑 66.😬 67.🙄 68.😯 69.😦 70.😧\n71.😮‍💨 72.😲 73.😴 74.🤤 75.😪 76.😵‍💫 77.😵 78.🥴 79.🤮 80.🤧\n81.😷 82.🤒 83.🤕 84.🤢 85.🤮 86.🤧 87.😇 88.🤠 89.🤡 90.🤥\n91.🤫 92.🤭 93.🧐 94.🤓 95.😈 96.👿 97.👹",
+          "ts": "2026-09-23T22:46:15.201Z",
+          "completed": true
+        },
+        {
+          "role": "user",
+          "content": "/browser on IMDB.com search for Guardians of the Galazy, Then go to the page about it, after that get the director's name and find his bio",
+          "ts": "2026-09-23T22:52:53.467Z",
+          "command": "browser"
+        },
+        {
+          "role": "assistant",
+          "content": "Reasoner summary (step 5):\nFocus on the current page state.\nFocus: current page\nRisk: medium\nCaution: keep the next step small",
+          "ts": "2026-09-23T22:54:58.175Z",
+          "reasoner_summary": true,
+          "step": 5,
+          "completed": false
+        },
+        {
+          "role": "assistant",
+          "content": "I successfully navigated to the IMDb page for **James Gunn** after searching for \"Guardians of the Galaxy.\" The final URL is [https://www.imdb.com/name/nm0348181/?ref_=tt_ov_1_1](https://www.imdb.com/name/nm0348181/?ref_=tt_ov_1_1) and the title of the page is **James Gunn - IMDb**.\n\nFrom the extracted text snippet, I found the following information about James Gunn:\n- He was born and raised in St. Louis, Missouri.\n- He attended Saint Louis University High and later dropped out of college to pursue a rock and roll career.\n- He received his B.A. at Saint Louis University and an MFA in creative writing from Columbia University.\n- He wrote and produced the cult classic *Tromeo and Juliet* (1996) and wrote *All I Need to Know about Filmmaking I Learned from the Toxic Avenger* with Lloyd Kaufman.\n- He made his directorial debut with *Slither* (2006) and directed the superhero films *Guardians of the Galaxy* (2014) and its sequel *Guardians of the Galaxy: Vol. 2* (2017).\n\nThe extracted content didn't include specific dates of birth, exact birth year, or detailed information about his spiritual awakening in Cannes in 1997 beyond the year mentioned. However, the provided biography gives a comprehensive overview of his early life, education, and career milestones up to his work on the Marvel films. 🎬📚",
+          "ts": "2026-09-23T22:57:06.011Z",
+          "goal": "on IMDB.com search for Guardians of the Galazy, Then go to the page about it, after that get the director's name and find his bio",
+          "completed": true
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "ts": "2026-09-26T19:18:45.827Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hey! What's up? Anything exciting happening today? :smile:",
+          "ts": "2026-09-26T19:18:46.976Z",
           "completed": true
         }
       ]

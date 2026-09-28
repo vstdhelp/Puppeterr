@@ -4745,7 +4745,6 @@ async function pinchListWebhookTypes() {
 
   function evaluatePeerAlignment(plan = {}, peerSignals = {}) {
     const planText = collectPlanText(plan);
-    const reasoner = peerSignals?.reasoner || {};
     const supervisor = peerSignals?.supervisor || {};
     const research = peerSignals?.research || {};
     const hints = [];
@@ -4754,21 +4753,6 @@ async function pinchListWebhookTypes() {
     let total = 0;
 
     const peerChecks = [
-      {
-        label: "reasoner_instinct",
-        value: reasoner.instinct,
-        strength: 0.14
-      },
-      {
-        label: "reasoner_focus",
-        value: reasoner.next_focus,
-        strength: 0.12
-      },
-      {
-        label: "reasoner_caution",
-        value: reasoner.caution,
-        strength: 0.08
-      },
       {
         label: "supervisor_reason",
         value: supervisor.reason,
@@ -5260,16 +5244,15 @@ URL: ${String(state?.url || "")}`,
     return candidates.slice(0, 10);
   }
 
-  function shouldResetTaskContextToGoogle(state, goalMem, searchEngineCompareGoal) {
+  function shouldResetTaskContextToSearchEngine(state, goalMem, searchEngineCompareGoal) {
     const currentHost = getHostFromUrl(state?.url || "");
     if (!currentHost || currentHost === "about:blank") return false;
-    if (hostMatchesExpectedHost(currentHost, "google.com")) return false;
     if (goalMem?.targetHost && hostMatchesExpectedHost(currentHost, goalMem.targetHost)) return false;
     if (searchEngineCompareGoal) {
-      return !hostMatchesExpectedHost(currentHost, "google.com") && !hostMatchesExpectedHost(currentHost, "bing.com");
+      return !hostMatchesExpectedHost(currentHost, "google.com") && !hostMatchesExpectedHost(currentHost, "bing.com") && !hostMatchesExpectedHost(currentHost, "duckduckgo.com");
     }
     if (goalMem?.query) {
-      return !hostMatchesExpectedHost(currentHost, "google.com") && !hostMatchesExpectedHost(currentHost, "bing.com") && !hostMatchesExpectedHost(currentHost, "duckduckgo.com") && !hostMatchesExpectedHost(currentHost, "search.yahoo.com");
+      return !hostMatchesExpectedHost(currentHost, "bing.com") && !hostMatchesExpectedHost(currentHost, "duckduckgo.com") && !hostMatchesExpectedHost(currentHost, "search.yahoo.com");
     }
     return !!goalMem?.targetHost && !hostMatchesExpectedHost(currentHost, goalMem.targetHost);
   }
@@ -5877,7 +5860,8 @@ Return JSON only:
 
   // ── LEARNING LOG: persistent action/task outcomes for fast adaptation ───────
   function loadLearningLog() {
-    if (Array.isArray(learningLogCache)) return learningLogCache;
+    // Read the log fresh so planner steps see outcomes written earlier in the
+    // same process, rather than a snapshot captured on the first lookup.
     if (fs.existsSync(LOG_FILE)) {
       try {
         const parsed = JSON.parse(fs.readFileSync(LOG_FILE, "utf8"));
@@ -6953,6 +6937,11 @@ async function planNextSteps(goal, state, visionFeedback, taskLog, plannerHistor
     ? compactUrlForPrompt(taskHints.directNavigationTarget)
     : "none";
   const compactKnowledge = compactPromptValue(JSON.stringify(taskHints.knowledgeContext || {}), 1800);
+  const compactInstinctReport = compactPromptValue(JSON.stringify(taskHints.instinctReport || {}), 2400);
+  const compactInstinctSummary = compactPromptValue(JSON.stringify({
+    currentSubtask: peerReasoner.currentSubtask,
+    relevantAnchors: (peerReasoner.relevantAnchors || []).slice(0, 3).map(item => ({ text: item.text, href: item.href, selector: item.selector }))
+  }), 360);
 
   // Dynamic page-text compaction: budget = however much room is actually
   // left after every other field in this prompt, not a fixed guess. Also
@@ -6988,8 +6977,7 @@ async function planNextSteps(goal, state, visionFeedback, taskLog, plannerHistor
     compactTabs, compactInputs, compactButtons, compactVisibleLinks,
     compactVoidMapSummary, compactVoidMapClickable,
     compactPromptValue(visionFeedback || "none", 280),
-    compactKnowledge,
-    compactPromptValue(peerReasoner.instinct || "none", 80),
+    compactKnowledge, compactInstinctReport, compactInstinctSummary,
     compactPromptValue(peerSupervisor.reason || "", 70),
     goalMemCtx || "none", compactDirectNavigationTarget,
     compactTaskLog, compactRecon
@@ -7015,7 +7003,8 @@ VoidMap:${compactVoidMapSummary}
 VoidClickable:${compactVoidMapClickable}
 Vision:${compactPromptValue(visionFeedback || "none", 280)}
 KnowledgeBusEvidence:${compactKnowledge}
-Peers:instinct=${compactPromptValue(peerReasoner.instinct || "none", 80)};risk=${compactPromptValue(peerReasoner.risk || "none", 24)};focus=${compactPromptValue(peerReasoner.next_focus || "none", 60)};supervisor=${compactPromptValue(peerSupervisor.decision || "none", 20)}:${compactPromptValue(peerSupervisor.reason || "", 70)};researchHints=${Number(peerResearch.hintCount || 0)}
+InstinctEvidencePacket:${compactInstinctReport || "none"}
+Peers:instinct_evidence=${compactInstinctSummary || "none"};supervisor=${compactPromptValue(peerSupervisor.decision || "none", 20)}:${compactPromptValue(peerSupervisor.reason || "", 70)};researchHints=${Number(peerResearch.hintCount || 0)}
 GoalProgress:${goalMemCtx || "none"}
 DirectNavigationTarget:${compactDirectNavigationTarget}
 DirectNavigationHint:${taskHints.simpleFastPathCandidate ? "There is a direct navigation candidate available, but only follow it if it seems like the best first action." : "none"}
@@ -7288,9 +7277,10 @@ const PLANNER_TIPS_50 = `
 51 The FOLLOWING DOMAINS DO NOT HAVE contain/use captchas: ${CAPTCHA_DOMAINS}. IF YOU SEE ANY OTHER DOMAIN that consistantly shows no captchas write that in you summary`;
 
 const PLANNER_SYSTEM_PROMPT = `CRITICAL: Output must be ONLY valid JSON. Start with { and end with }. No prose, no markdown, no code fences.
+CRITICAL: InstinctEvidencePacket contains ranked evidence only. Treat it as factual context, not an action recommendation; you alone choose whether and how to act.
 CRITICAL: On search engines (Google/Bing/DuckDuckGo/Yahoo), submit queries with Enter or submitForm. Do NOT click "Search" buttons.
-CRITICAL: Honor the explicit engine/order in the user's prompt. If the goal explicitly names Bing or Bing Maps first, do not rewrite it into a Google-first compare flow. Default Google-first only when the prompt does not specify an engine or compare sequence.
-CRITICAL: Prefer Google over Bing for search when the destination isn't specified by the user. Google accounts for the large majority of observed CAPTCHA/challenge walls in this agent's run history — only go to Bing when the user explicitly names it (OR when GOOGLE's captchas become overbearing (eg. 6+)).
+CRITICAL: Honor the explicit engine/order in the user's prompt. If the goal explicitly names a search engine first, do not rewrite it into a different-engine compare flow. Default DuckDuckGo-first only when the prompt does not specify an engine or compare sequence.
+CRITICAL: Prefer DuckDuckGo for search when the destination isn't specified by the user. Use Google or Bing when the user explicitly requests either engine or a comparison involving it.
 HIGH-CRITICAL:  When you need to extract text from a sector or need to extract text use the following command: <<START OF COMMAND>> // Wait for the element to be present in the DOM await page.waitForSelector('$YOURSECTORHERE$'); // Get the visible text (similar to innerText in DevTools) const text = await page.innerText('$YOURSECTORHERE$'); <<END OF COMMAND>> $YOURSECTORHERE$ = to the sector of the text you wish to extract to complete the goal. The FOLLOWING DOMAINS DO NOT HAVE contain/use captchas: ${CAPTCHA_DOMAINS}. IF YOU SEE ANY OTHER DOMAIN that consistantly shows no captchas write that in you summary
 MAX-PRIORITY: When the prompt request info from a site or multiple ones remember to get as much as information as possible and summarize it in a concise manner. If the prompt asks for a summary of a large document, use the summarizeLargeDocument command to get a summary of the document.
 Planner mode: deterministic, progress-first, minimal-risk.
@@ -7351,40 +7341,28 @@ Schema:
 {"reasoning":"short","confidence":0-100,"done":false,"actions":[{"action":"name","params":{}}]}`;
 
 const REASONER_INSTINCT_PROMPT = `You are the fast instinct layer.
-Give short, operational guidance before planning.
+You are a task-aware evidence compressor, not a planner or supervisor.
+The Planner supplies the current subtask. Filter the supplied evidence catalog for
+that subtask and return only catalog IDs; never invent text, links, selectors,
+facts, actions, recommendations, risk judgments, or next steps.
 
-You may request targeted internal knowledge when it would reduce uncertainty.
-Available KnowledgeBus modules are:
-- MEMORY.search: prior task outcomes and memory.json/history evidence
-- PAGE.state or PAGE.text: current live page state and visible text
-- VISION.snapshot: latest visual interpretation and whether a requested result is visible
-- ELEMENT_MAP.snapshot: current interactive elements and visible page regions
-- SUPERVISOR.decision: latest safety decision and reason
-- MODELS.list: available model capabilities
+Rank exact anchors and controls first when they directly support the subtask.
+Return nearby context that explains a selected anchor, plausible competing
+candidates with evidence-based rejection reasons, and genuine evidence gaps.
+Use confidence only to describe support in the cited evidence, not task success.
+If the evidence does not support a conclusion, leave the relevant list empty and
+lower evidenceStrength. Keep reasons short and tied to visible catalog entries.
 
-Do not browse the web for historical or internal questions. Use MEMORY for questions
-about previous tasks, logs, failures, or what happened earlier. Use VISION or
-ELEMENT_MAP when the answer depends on what is visibly present. Query only the
-module(s) relevant to the uncertainty; do not query everything by default.
-When no query is needed, proceed from the evidence already supplied.
-
-Output JSON only:
+Output JSON only, matching this shape:
 {
-  "instinct": "one concrete sentence",
-  "risk": "low|medium|high",
-  "next_focus": "short target/action family",
-  "caution": "one likely failure to avoid"
+  "relevantAnchorIds": [{"id":"e1","confidence":0.0,"why":"short evidence-based relevance"}],
+  "nearbyContextIds": [{"id":"e2","why":"short relationship to an anchor"}],
+  "competingCandidateIds": [{"id":"e3","reasonRejected":"evidence-based distinction"}],
+  "evidenceStrength": "very_high|high|medium|low",
+  "evidenceGaps": ["missing fact or signal"]
 }
 
-Rules:
-1) No narration, no long explanations.
-2) If page is blocked or uncertain, say it clearly.
-3) If vision already contains needed answer, advise extract/finish.
-4) If same selector/action keeps failing, advise a different selector family or submit path.
-5) Decide dynamically whether MEMORY, PAGE, VISION, ELEMENT_MAP, SUPERVISOR, or MODELS is needed.
-6) When a targeted query is needed, state the exact module and query in "next_focus" or "caution".
-7) For graph, chart, equation, line, canvas, or screenshot goals, explicitly check whether the requested visual result is visible in Vision evidence, regardless of its color.
-8) Allow one small creative suggestion only when risk is low and it directly supports the goal.`;
+Do not return a recommended action. Do not use evidence IDs absent from the supplied catalog.`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // AGENT: EXECUTOR
@@ -7662,6 +7640,11 @@ async function runActionWithFallback(item, goal, models) {
     const targetRaw = String(params.targetURL || params.url || "").trim();
     const timeoutMs = Math.max(500, Number(params.timeout) || 8000);
     const baselineTabCount = context.pages().length;
+    const baselineContentSignature = await page.evaluate(() => ({
+      title: document.title || "",
+      textLen: (document.body?.innerText || "").length,
+      textHead: (document.body?.innerText || "").slice(0, 300)
+    })).catch(() => ({ title: "", textLen: 0, textHead: "" }));
     const normalizedTarget = (() => {
       if (!targetRaw) return "";
       if (/^\/\//.test(targetRaw)) return `https:${targetRaw}`;
@@ -7712,7 +7695,23 @@ async function runActionWithFallback(item, goal, models) {
       await sleep(220);
     }
 
-    const timeoutError = `URL did not change within ${timeoutMs}ms`;
+    const finalContentSignature = await page.evaluate(() => ({
+      title: document.title || "",
+      textLen: (document.body?.innerText || "").length,
+      textHead: (document.body?.innerText || "").slice(0, 300)
+    })).catch(() => ({ title: "", textLen: 0, textHead: "" }));
+    const contentChanged =
+      finalContentSignature.title !== baselineContentSignature.title ||
+      finalContentSignature.textHead !== baselineContentSignature.textHead ||
+      Math.abs(finalContentSignature.textLen - baselineContentSignature.textLen) > 40;
+
+    if (contentChanged) {
+      const resultText = `content changed without url change (title: "${finalContentSignature.title}")`;
+      recordOutcome("ok", { result: resultText, path: "primary-content-change-fallback" });
+      return { action, status: "ok", result: resultText };
+    }
+
+    const timeoutError = `URL did not change within ${timeoutMs}ms and page content did not change either`;
     recordOutcome("error", { error: timeoutError, path: ACTION_PATH.PRIMARY_URL_CHANGE });
     return { action, status: "error", error: timeoutError };
   }
@@ -7821,8 +7820,14 @@ async function runActionWithFallback(item, goal, models) {
         think(`Fallback: retry goto once -> ${params.url}`);
         await sleep(900);
         await actions.goto({ page, context, url: String(params.url) });
-        recordOutcome("ok", { result: "goto retry success", path: ACTION_PATH.FALLBACK_GOTO_RETRY });
-        return { action, status: "ok", result: "goto retry success" };
+        const landedUrl = (() => { try { return page.url(); } catch { return String(params.url); } })();
+        const landedHost = getHostFromUrl(landedUrl);
+        const requestedHost = getHostFromUrl(String(params.url));
+        const resultText = landedHost && requestedHost && landedHost === requestedHost
+          ? "goto retry success (redirected within same site)"
+          : "goto retry success";
+        recordOutcome("ok", { result: resultText, path: ACTION_PATH.FALLBACK_GOTO_RETRY });
+        return { action, status: "ok", result: resultText };
       } catch {}
     }
 
@@ -7962,14 +7967,21 @@ async function executeActionPlan(plan, goal, models, throttle = {}, supervisorCo
       const selectorAction = action === "hybridDblclick" ? "dblclick" : "click";
       const targetKeywords = extractTargetKeywords(goal, baseSelector);
       const clickMap = await buildFullPageClickMap(targetKeywords, cqards);
-      const rankedCandidates = clickMap.candidates.slice(0, Math.max(1, HYBRID_SELECTOR_VARIANTS * 2));
       const hrefNeedles = extractSelectorHrefNeedles(baseSelector);
-      const strictHrefCandidates = hrefNeedles.length
-        ? rankedCandidates.filter(candidate => {
+      const candidateLimit = Math.max(1, HYBRID_SELECTOR_VARIANTS * 2);
+      // Apply an explicit href constraint before confidence truncation. An
+      // exact link can rank below the small vision candidate window because
+      // its text is generic or its container is visually unusual; truncating
+      // first made strong href selectors silently fall back to unrelated
+      // clickable elements.
+      const hrefMatchedCandidates = hrefNeedles.length
+        ? clickMap.candidates.filter(candidate => {
             const href = String(candidate?.href || "").toLowerCase();
             return hrefNeedles.some(needle => href.includes(needle));
           })
-        : rankedCandidates;
+        : [];
+      const strictHrefCandidates = hrefMatchedCandidates.slice(0, candidateLimit);
+      const rankedCandidates = clickMap.candidates.slice(0, candidateLimit);
       const candidatePool = strictHrefCandidates.length ? strictHrefCandidates : rankedCandidates;
 
       stepLogMsg(`Fusion click sweep: selector=${baseSelector || "(none)"}, clickable=${clickMap.allCandidates.length}, safe=${clickMap.candidates.length}, anchors=${clickMap.anchors.length}.`);
@@ -8155,7 +8167,227 @@ Mark done=true only when there is clear evidence the goal is satisfied.`
   }
 }
 
-async function getReasonerInstinct(goal, state, visionFeedback, taskLog, models, knowledgeContext = null) {
+function inferPageTypeFromUrl(url, title = "") {
+  const value = String(url || "")
+    .toLowerCase();
+  try {
+    const parsed = new URL(value);
+    const host = parsed.hostname.toLowerCase();
+    if (["google.com", "bing.com", "duckduckgo.com", "search.yahoo.com"].some(domain => host === domain || host.endsWith(`.${domain}`))) {
+      return parsed.searchParams.has("q") || /\/(search|results)\/?$/.test(parsed.pathname)
+        ? "search_results"
+        : "search_engine_homepage";
+    }
+  } catch {}
+  if (/\/title\/tt\d+\//.test(value)) return "imdb_title_page";
+  if (/\/name\/nm\d+\//.test(value)) return "imdb_person_page";
+  if (/(google\.|\/search\?|\/results\?|bing\.|duckduckgo\.)/.test(value) || /search/i.test(String(title || ""))) return "search_results";
+  if (/\/movie\//.test(value) || /\/film\//.test(value)) return "content_page";
+  if (/\/person\//.test(value) || /\/actor\//.test(value) || /\/director\//.test(value)) return "person_page";
+  return "unknown_page";
+}
+
+function buildInstinctEvidenceBundle(goal, state, visionFeedback, taskLog, knowledgeContext, taskContext = {}, goalMemory = null) {
+  const boundedEvidenceText = (value, limit = 500) => String(value || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, limit);
+  const evidenceCatalog = [];
+  const seenEvidence = new Set();
+  const addEvidence = (type, rawText, source, fields = {}) => {
+    const text = boundedEvidenceText(rawText, 420);
+    if (!text) return;
+    const href = boundedEvidenceText(fields.href || fields.url || fields.route, 320);
+    const selector = boundedEvidenceText(fields.selector, 200);
+    const key = `${type}|${source}|${text}|${href}|${selector}`;
+    if (seenEvidence.has(key)) return;
+    seenEvidence.add(key);
+    evidenceCatalog.push({
+      id: `e${evidenceCatalog.length + 1}`,
+      type: boundedEvidenceText(type || "evidence", 40),
+      text,
+      href: href || undefined,
+      selector: selector || undefined,
+      source: boundedEvidenceText(source || "page", 40)
+    });
+  };
+  const addEvidenceChunks = (type, rawText, source, maxChunks = 16) => {
+    const text = String(rawText || "").replace(/\s+/g, " ").trim();
+    for (let offset = 0, chunk = 0; offset < text.length && chunk < maxChunks; offset += 420, chunk += 1) {
+      addEvidence(`${type}_${chunk + 1}`, text.slice(offset, offset + 420), source);
+    }
+  };
+
+  const taskText = boundedEvidenceText(goal, 400);
+  const subgoals = Array.isArray(goalMemory?.subgoals) ? goalMemory.subgoals : [];
+  const nextSubgoal = subgoals.find(item => !item?.done);
+  const currentSubtask = boundedEvidenceText(
+    taskContext?.currentSubtask || (nextSubgoal ? `${nextSubgoal.kind}: ${nextSubgoal.target}` : taskText || "Continue the browser task"),
+    320
+  );
+  const recentActions = (Array.isArray(taskLog) ? taskLog : []).slice(-10).map(line => boundedEvidenceText(line, 260)).filter(Boolean);
+  const doneCount = subgoals.filter(item => item?.done).length;
+  const goalProgress = {
+    completed: doneCount,
+    total: subgoals.length,
+    percent: subgoals.length ? Math.round((doneCount / subgoals.length) * 100) : null
+  };
+  const lastResult = boundedEvidenceText(taskContext?.lastResult, 180);
+  const subtaskStatus = subgoals.length && !nextSubgoal
+    ? "complete"
+    : /^error\b/i.test(lastResult)
+      ? "blocked"
+      : Number(taskContext?.stepCount || 0) > 0
+        ? "in_progress"
+        : "not_started";
+
+  addEvidenceChunks("page_text", state?.text, "page", 24);
+  addEvidenceChunks("visual_summary", visionFeedback, "vision", 8);
+
+  for (const link of (Array.isArray(state?.links) ? state.links : []).slice(0, 40)) {
+    addEvidence("anchor", link?.text || link?.ariaLabel || link?.href, "page", {
+      href: link?.href,
+      selector: link?.selector
+    });
+  }
+  for (const input of (Array.isArray(state?.inputs) ? state.inputs : []).slice(0, 30)) {
+    addEvidence("input", [input?.label, input?.placeholder, input?.name, input?.type].filter(Boolean).join(" | "), "page", {
+      selector: input?.selector || input?.id || input?.name
+    });
+  }
+  for (const button of (Array.isArray(state?.buttons) ? state.buttons : []).slice(0, 30)) {
+    addEvidence("button", button?.text || button?.ariaLabel || button?.title, "page", { selector: button?.selector });
+  }
+  for (const item of (Array.isArray(state?.voidMapClickable) ? state.voidMapClickable : []).slice(0, 30)) {
+    addEvidence("control", item, "element_map");
+  }
+
+  const elementMapResult = knowledgeContext?.elementMap?.results?.[0] || knowledgeContext?.elementMap;
+  const mappedItems = Array.isArray(elementMapResult?.clickable)
+    ? elementMapResult.clickable
+    : Array.isArray(elementMapResult?.items)
+      ? elementMapResult.items
+      : [];
+  for (const item of mappedItems.slice(0, 60)) {
+    addEvidence(item?.tag || item?.role || "control", item?.text || item?.ariaLabel || item?.label || item?.name || item?.href, "element_map", {
+      href: item?.href || item?.route || item?.url,
+      selector: item?.selector || item?.id
+    });
+  }
+
+  if (knowledgeContext?.strider) {
+    const striderText = typeof knowledgeContext.strider === "string"
+      ? knowledgeContext.strider
+      : JSON.stringify(knowledgeContext.strider);
+    addEvidenceChunks("recon", striderText, "strider", 8);
+  }
+  for (const item of (Array.isArray(knowledgeContext?.memory?.results) ? knowledgeContext.memory.results : []).slice(0, 8)) {
+    addEvidence("memory", item?.summary || item?.text || item?.snippet, "memory", { href: item?.url || item?.href });
+  }
+  for (const item of (Array.isArray(knowledgeContext?.vision?.results) ? knowledgeContext.vision.results : []).slice(0, 8)) {
+    addEvidence("vision_context", item?.summary || item?.text || item?.snippet || JSON.stringify(item), "vision");
+  }
+  if (elementMapResult?.summary) addEvidenceChunks("map_summary", elementMapResult.summary, "element_map", 8);
+  for (const action of recentActions) addEvidence("recent_action", action, "task_log");
+
+  const tokenize = value => String(value || "").toLowerCase().split(/[^a-z0-9]+/).filter(token => token.length >= 3);
+  const subtaskTerms = new Set(tokenize(currentSubtask));
+  const taskTerms = new Set(tokenize(taskText));
+  const fallbackRelevantEvidence = evidenceCatalog.map(item => {
+    const haystack = `${item.text} ${item.href || ""} ${item.selector || ""}`.toLowerCase();
+    const tokens = new Set(tokenize(haystack));
+    let score = 0;
+    for (const term of subtaskTerms) if (tokens.has(term)) score += 2;
+    for (const term of taskTerms) if (!subtaskTerms.has(term) && tokens.has(term)) score += 0.5;
+    if (/search|input|button|anchor|control/.test(item.type) && /search|locate|find|click|open|select|fill/.test(currentSubtask.toLowerCase())) score += 0.5;
+    return { ...item, _relevanceScore: score };
+  }).filter(item => item._relevanceScore > 0)
+    .sort((a, b) => b._relevanceScore - a._relevanceScore)
+    .slice(0, 12)
+    .map(({ _relevanceScore, ...item }) => ({ ...item, why: "lexical overlap with the active subtask" }));
+
+  return {
+    task: taskText || "browser task",
+    currentSubtask,
+    pageClassification: inferPageTypeFromUrl(state?.url, state?.title),
+    currentUrl: boundedEvidenceText(state?.url, 500),
+    currentTitle: boundedEvidenceText(state?.title, 240),
+    goalProgress,
+    subtaskStatus,
+    lastAction: boundedEvidenceText(taskContext?.lastAction, 220),
+    lastResult,
+    recentActions,
+    evidenceCatalog,
+    fallbackRelevantEvidence
+  };
+}
+
+function formatInstinctEvidencePacket(report, maxChars = 3200) {
+  const lineForEvidence = (item, index, confidence = false) => {
+    const location = [item.source ? `source=${item.source}` : "", item.href ? `href=${item.href}` : "", item.selector ? `selector=${item.selector}` : ""].filter(Boolean).join(" ");
+    const certainty = confidence && Number.isFinite(Number(item.confidence)) ? ` confidence=${Number(item.confidence).toFixed(2)}` : "";
+    const why = item.why ? ` | ${item.why}` : "";
+    return `${index + 1}. ${item.text}${location ? ` (${location})` : ""}${certainty}${why}`;
+  };
+  const progress = report?.goalProgress?.percent == null
+    ? "not tracked"
+    : `${report.goalProgress.percent}% (${report.goalProgress.completed}/${report.goalProgress.total})`;
+  const lines = [
+    "INSTINCT REPORT",
+    `Task: ${report?.task || "unknown"}`,
+    `Current Subtask: ${report?.currentSubtask || "unknown"}`,
+    `Page Classification: ${report?.pageClassification || "unknown_page"}`,
+    `Goal Progress: ${progress}`,
+    `Subtask Status: ${report?.subtaskStatus || "unknown"}`,
+    `Evidence Strength: ${String(report?.evidenceStrength || "low").replace(/_/g, " ")}`,
+    "Relevant Anchors:",
+    ...(report?.relevantAnchors || []).map(lineForEvidence),
+    "Nearby Context:",
+    ...(report?.nearbyContext || []).map(lineForEvidence),
+    "Competing Candidates:",
+    ...(report?.competingCandidates || []).map((item, index) => `${index + 1}. ${item.text}${item.href ? ` (href=${item.href})` : ""}`),
+    "Reason Rejected:",
+    ...(report?.rejectedEvidence || []).map((item, index) => `${index + 1}. ${item.text}: ${item.reasonRejected || "not the best-supported match for this subtask"}`),
+    "Evidence Gaps:",
+    ...(report?.evidenceGaps || []).map((item, index) => `${index + 1}. ${item}`)
+  ];
+  return lines.join("\n").slice(0, maxChars);
+}
+
+async function getReasonerInstinct(goal, state, visionFeedback, taskLog, models, knowledgeContext = null, taskContext = {}, goalMemory = null) {
+  const boundedEvidenceText = (value, limit = 500) => String(value || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, limit);
+  const bundledEvidence = buildInstinctEvidenceBundle(goal, state, visionFeedback, taskLog, knowledgeContext, taskContext, goalMemory);
+  const evidenceById = new Map(bundledEvidence.evidenceCatalog.map(item => [item.id, item]));
+  const fallbackReport = () => ({
+    task: bundledEvidence.task,
+    currentSubtask: bundledEvidence.currentSubtask,
+    pageClassification: bundledEvidence.pageClassification,
+    currentUrl: bundledEvidence.currentUrl,
+    currentTitle: bundledEvidence.currentTitle,
+    goalProgress: bundledEvidence.goalProgress,
+    subtaskStatus: bundledEvidence.subtaskStatus,
+    relevantAnchors: bundledEvidence.fallbackRelevantEvidence,
+    nearbyContext: [],
+    competingCandidates: [],
+    rejectedEvidence: [],
+    evidenceStrength: "low",
+    evidenceGaps: ["Model-based subtask relevance ranking was unavailable."]
+  });
+  const attachEvidence = (selection, kind) => (Array.isArray(selection) ? selection : []).slice(0, 12).flatMap(item => {
+    const id = typeof item === "string" ? item : String(item?.id || "");
+    const evidence = evidenceById.get(id);
+    if (!evidence) return [];
+    if (kind === "rejected") return [{ ...evidence, reasonRejected: boundedEvidenceText(item?.reasonRejected, 180) || "No supporting evidence for the active subtask." }];
+    return [{
+      ...evidence,
+      confidence: Number.isFinite(Number(item?.confidence)) ? Math.max(0, Math.min(1, Number(item.confidence))) : undefined,
+      why: boundedEvidenceText(item?.why, 180) || undefined
+    }];
+  });
+
   try {
     const raw = await callCFAI(models.reasoner, [
       {
@@ -8164,43 +8396,53 @@ async function getReasonerInstinct(goal, state, visionFeedback, taskLog, models,
       },
       {
         role: "user",
-        content: `Goal: "${goal}"
-Current URL: ${state.url}
-Current title: ${state.title}
-Vision notes: ${visionFeedback || "(none)"}
-KnowledgeBus evidence: ${compactPromptValue(JSON.stringify(knowledgeContext || {}), 1600)}
-Recent step log:
-${taskLog.slice(-6).join("\n") || "(none)"}
+        content: `Task: ${bundledEvidence.task}
+Current subtask (selected by Planner/task memory): ${bundledEvidence.currentSubtask}
+Page classification: ${bundledEvidence.pageClassification}
+Current URL: ${bundledEvidence.currentUrl || "(none)"}
+Current title: ${bundledEvidence.currentTitle || "(none)"}
+Goal progress: ${JSON.stringify(bundledEvidence.goalProgress)}
+Subtask status: ${bundledEvidence.subtaskStatus}
+Last action/result: ${bundledEvidence.lastAction || "(none)"} / ${bundledEvidence.lastResult || "(none)"}
+Recent actions: ${JSON.stringify(bundledEvidence.recentActions)}
+Evidence catalog (cite IDs only; this contains current page text, anchors, controls, Vision, Element-Map, Strider, Memory, and task history where available):
+${JSON.stringify(bundledEvidence.evidenceCatalog)}
 
-Return the instinct JSON now.`
+Return only the evidence packet JSON. Do not recommend or choose an action.`
       }
-    ], 220, 1, getRuntimeTemperature(models));
+    ], 700, 1, getRuntimeTemperature(models));
 
     const parsed = safeParseJSON(raw);
-    if (parsed) {
-      return {
-        instinct: stripThinking(String(parsed.instinct || "")).slice(0, 400) || "Focus on the current page state.",
-        risk: ["low", "medium", "high"].includes(String(parsed.risk || "").toLowerCase())
-          ? String(parsed.risk || "").toLowerCase()
-          : "medium",
-        next_focus: stripThinking(String(parsed.next_focus || "")).slice(0, 200) || "current page",
-        caution: stripThinking(String(parsed.caution || "")).slice(0, 280) || "keep the next step small"
-      };
-    }
-    const fallback = stripThinking(raw);
+    if (!parsed || typeof parsed !== "object") return fallbackReport();
+    const rejectedEvidence = attachEvidence(parsed.competingCandidateIds, "rejected");
+    const modelRelevantAnchors = attachEvidence(parsed.relevantAnchorIds, "selected");
+    const modelRelevantIds = new Set(modelRelevantAnchors.map(item => item.id));
+    const relevantAnchors = [
+      ...modelRelevantAnchors,
+      ...bundledEvidence.fallbackRelevantEvidence.filter(item => !modelRelevantIds.has(item.id))
+    ].slice(0, 12);
+    const selectedIds = new Set(relevantAnchors.map(item => item.id));
+    const competingCandidates = rejectedEvidence.filter(item => !selectedIds.has(item.id));
+    const evidenceStrength = ["very_high", "high", "medium", "low"].includes(String(parsed.evidenceStrength || "").toLowerCase())
+      ? String(parsed.evidenceStrength).toLowerCase()
+      : "low";
     return {
-      instinct: fallback.slice(0, 400) || "Focus on the current page state.",
-      risk: "medium",
-      next_focus: "current page",
-      caution: "keep the next step small"
+      task: bundledEvidence.task,
+      currentSubtask: bundledEvidence.currentSubtask,
+      pageClassification: bundledEvidence.pageClassification,
+      currentUrl: bundledEvidence.currentUrl,
+      currentTitle: bundledEvidence.currentTitle,
+      goalProgress: bundledEvidence.goalProgress,
+      subtaskStatus: bundledEvidence.subtaskStatus,
+      relevantAnchors,
+      nearbyContext: attachEvidence(parsed.nearbyContextIds, "selected"),
+      competingCandidates,
+      rejectedEvidence: competingCandidates,
+      evidenceStrength,
+      evidenceGaps: (Array.isArray(parsed.evidenceGaps) ? parsed.evidenceGaps : []).slice(0, 6).map(item => boundedEvidenceText(item, 180)).filter(Boolean)
     };
   } catch {
-    return {
-      instinct: "Focus on the current page state.",
-      risk: "medium",
-      next_focus: "current page",
-      caution: "keep the next step small"
-    };
+    return fallbackReport();
   }
 }
 
@@ -8209,14 +8451,21 @@ Return the instinct JSON now.`
 // ─────────────────────────────────────────────────────────────────────────────
 function detectStuck(log) {
   if (log.length < 4) return false;
-  const last4 = log.slice(-4);
-  // Consider stuck if all 4 recent log lines have identical action+result summaries
   const sig = (line) => {
     const m = line.match(/:\s*([\w:,]+)\s*—/);
     return m ? m[1].trim() : line.slice(0, 40).trim();
   };
-  const sigs = last4.map(sig);
-  return sigs.every(s => s === sigs[0] && s.length > 2);
+  const sigs4 = log.slice(-4).map(sig);
+  if (sigs4.every(s => s === sigs4[0] && s.length > 2)) return true;
+
+  if (log.length >= 6) {
+    const sigs6 = log.slice(-6).map(sig);
+    const alternates = sigs6[0] === sigs6[2] && sigs6[2] === sigs6[4] &&
+      sigs6[1] === sigs6[3] && sigs6[3] === sigs6[5] && sigs6[0] !== sigs6[1];
+    if (alternates && sigs6.every(s => s.length > 2)) return true;
+  }
+
+  return false;
 }
 
 function looksLikeTaskGoal(goalText) {
@@ -8328,6 +8577,7 @@ function inferKnownSiteTarget(goalText) {
     { pattern: /\bgithub\b/, url: "https://github.com/" },
     { pattern: /\bgoogle\b/, url: "https://www.google.com/" },
     { pattern: /\bbing\b/, url: "https://www.bing.com/" },
+    { pattern: /\bduckduckgo\b|duckduckgo\.com/, url: "https://duckduckgo.com/" },
     { pattern: /\byoutube\b/, url: "https://www.youtube.com/" },
   ];
   const hit = known.find(item => item.pattern.test(g));
@@ -8359,6 +8609,16 @@ function isGoogleSearchResultsUrl(rawUrl) {
     const parsed = new URL(String(rawUrl || ""));
     const host = parsed.hostname.toLowerCase();
     return (host === "google.com" || host.endsWith(".google.com")) && parsed.pathname === "/search";
+  } catch {
+    return false;
+  }
+}
+
+function isDuckDuckGoSearchResultsUrl(rawUrl) {
+  try {
+    const parsed = new URL(String(rawUrl || ""));
+    const host = parsed.hostname.toLowerCase();
+    return (host === "duckduckgo.com" || host.endsWith(".duckduckgo.com")) && parsed.searchParams.has("q");
   } catch {
     return false;
   }
@@ -8398,25 +8658,24 @@ function compactUrlForPrompt(rawUrl) {
   }
 }
 
-function buildSearchResultsUrl(queryText, engine = "google") {
+function buildSearchResultsUrl(queryText, engine = "duckduckgo") {
   const q = String(queryText || "").trim();
-  if (!q) return engine === "bing" ? "https://www.bing.com/" : "https://www.google.com/";
+  if (!q) {
+    if (engine === "bing") return "https://www.bing.com/";
+    if (engine === "google") return "https://www.google.com/";
+    return "https://duckduckgo.com/";
+  }
   if (engine === "bing") return `https://www.bing.com/search?q=${encodeURIComponent(q)}`;
-  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+  if (engine === "google") return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+  return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
 }
 
 function pickRecoveryUrl(goalText, fallbackQuery = "") {
   const explicit = sanitizeNavigationUrl(extractExplicitNavigationTarget(goalText));
   if (explicit) return explicit;
   const query = extractSearchQuery(goalText) || String(fallbackQuery || "").trim();
-  // Google over Bing here specifically: this path runs when the task is
-  // already recovering from a failure, and Bing accounts for the large
-  // majority of observed CAPTCHA walls (measured ~44% of all CAPTCHA hits
-  // vs Google's much smaller share) — routing a fragile recovery attempt
-  // through the higher-risk engine compounds the failure instead of
-  // resolving it.
-  if (query) return buildSearchResultsUrl(query, "google");
-  return "https://www.google.com/";
+  if (query) return buildSearchResultsUrl(query, "duckduckgo");
+  return "https://duckduckgo.com/";
 }
 
 function sanitizeExtractedSearchQuery(rawQuery) {
@@ -8872,7 +9131,7 @@ async function performConfusionResearch(goal, state, visionFeedback, taskLog, fa
     };
   }
 
-  const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(researchPlan.query)}`;
+  const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(researchPlan.query)}`;
   broadcast("research_started", {
     msg: `Confusion research: searching for ${researchPlan.query}`,
     query: researchPlan.query,
@@ -9144,11 +9403,11 @@ function inferHeuristicPlan(goal, state, taskLog, failures) {
     }
 
     const recentFillAttempts = countRecentActionStatus("fill:ok") + countRecentActionStatus("submitform:ok");
-    const recentGotoGoogle = countRecentActionStatus("goto:ok") + countRecentActionStatus("google.com");
-    const shouldForceSearchUrl = recentFillAttempts >= 4 || recentGotoGoogle >= 4 || failures >= 2;
+    const recentGotoDuckDuckGo = countRecentActionStatus("goto:ok") + countRecentActionStatus("duckduckgo.com");
+    const shouldForceSearchUrl = recentFillAttempts >= 4 || recentGotoDuckDuckGo >= 4 || failures >= 2;
 
     if (shouldForceSearchUrl) {
-      const searchUrl = buildSearchResultsUrl(query, "bing");
+      const searchUrl = buildSearchResultsUrl(query);
       return {
         reasoning: `Heuristic anti-loop: jump directly to search results for \"${query}\" to avoid repeating homepage actions.`,
         confidence: 76,
@@ -9435,13 +9694,6 @@ function clamp01(value) {
   return Math.max(0, Math.min(1, n));
 }
 
-function instinctRiskValue(riskLabel) {
-  const risk = String(riskLabel || "medium").toLowerCase();
-  if (risk === "high") return 0.82;
-  if (risk === "low") return 0.22;
-  return 0.52;
-}
-
 function visionRiskValue(visionSignal, visionFresh) {
   const state = String(visionSignal?.state || "").toLowerCase();
   if (state === "uncertain") return 0.36;
@@ -9593,10 +9845,22 @@ function evaluateSupervisorPlanGate(input = {}) {
   const stuck = !!input.stuck;
   const currentUrl = String(input.currentUrl || "").toLowerCase();
   const confidence = clamp01(Number(plan.confidence || 0) / 100);
-  const instinctRisk = instinctRiskValue(input.instinct?.risk);
+  const instinctRisk = 0;
   const visionRisk = visionRiskValue(input.visionSignal, !!input.visionFresh);
   const planRisk = planRiskValue(plan.actions || []);
   const actionsList = Array.isArray(plan.actions) ? plan.actions : [];
+  if (plan.done === true && !actionsList.length) {
+    return {
+      score: 1,
+      decision: "ok",
+      allow: true,
+      reasons: ["plan marked done with no remaining actions"],
+      mode: SUPERVISOR_MODE,
+      planRisk: 0,
+      instinctRisk: 0,
+      visionRisk: 0
+    };
+  }
   const planSignature = computePlanSignature(plan);
   const previousPlanSignature = String(input.previousPlanSignature || "");
   const escapedAction = String(input.escapeContext?.lastFailedAction || "");
@@ -9611,7 +9875,6 @@ function evaluateSupervisorPlanGate(input = {}) {
   let score = 0.76;
   score += (confidence - 0.5) * 0.34;
   score -= planRisk * 0.42;
-  score -= instinctRisk * 0.26;
   score -= visionRisk * 0.21;
   score -= Math.min(0.3, failures * 0.08);
   if (stuck) score -= 0.12;
@@ -9629,10 +9892,6 @@ function evaluateSupervisorPlanGate(input = {}) {
   if (planRisk >= 0.58) {
     reasons.push(`high plan risk ${planRisk.toFixed(2)}`);
     detectionType = "dangerousAction";
-  }
-  if (instinctRisk >= 0.7) {
-    reasons.push(`reasoner marked high risk (${String(input.instinct?.risk || "high")})`);
-    if (detectionType === "ok") detectionType = "badVision";
   }
   if (visionRisk >= 0.3) {
     reasons.push("vision uncertain");
@@ -10022,6 +10281,10 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
   let elementMapTimer = null;
   let elementMapInFlight = false;
   const goalMem = buildGoalMemory(goal);
+  const initialSubgoal = nextGoalSubgoal(goalMem);
+  taskContext.currentSubtask = initialSubgoal
+    ? `${initialSubgoal.kind}: ${initialSubgoal.target}`
+    : String(goal || "Inspect the current page").trim().slice(0, 320);
   const originalQuery = goalMem.query || getOriginalQuery(goal);
   const searchEngineCompareGoal = isSearchEngineComparisonGoal(goal);
   const compareSnapshots = { google: "", bing: "" };
@@ -10094,7 +10357,14 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
       visualGoal || stuck || failures >= 1 ? requests[shouldSearchMemory ? 1 : 0] : Promise.resolve(null),
       visualGoal || stuck || failures >= 1 ? requests[shouldSearchMemory ? 2 : 1] : Promise.resolve(null)
     ]);
-    return { memory, vision, elementMap, visualGoal, url: state?.url || "" };
+    return {
+      memory,
+      vision,
+      elementMap,
+      strider: currentStriderReconMemo || null,
+      visualGoal,
+      url: state?.url || ""
+    };
   }
 
   const scheduleElementMapTick = (initialDelayMs = null) => {
@@ -10153,7 +10423,7 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
       try { return String(page?.url?.() || "").trim(); } catch { return ""; }
     })();
     const requestedTargetRaw = String(options?.targetUrl || pickRecoveryUrl(goal, originalQuery) || "").trim();
-    const fallbackRecoveryUrl = sanitizeNavigationUrl(pickRecoveryUrl(goal, originalQuery)) || "https://www.google.com/";
+    const fallbackRecoveryUrl = sanitizeNavigationUrl(pickRecoveryUrl(goal, originalQuery)) || "https://duckduckgo.com/";
     const currentPageUrl = sanitizeNavigationUrl(currentPageUrlRaw);
     const requestedTarget = sanitizeNavigationUrl(requestedTargetRaw) || fallbackRecoveryUrl;
     const currentHost = getHostFromUrl(currentPageUrl || "");
@@ -10161,9 +10431,9 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
     const shouldPreserveCurrentUrl =
       requestedTarget &&
       currentPageUrl &&
-      requestedHost === "google.com" &&
+      requestedHost === "duckduckgo.com" &&
       currentHost &&
-      currentHost !== "google.com" &&
+      currentHost !== "duckduckgo.com" &&
       tag !== "CAPTCHA_ESCAPE" &&
       tag !== "CONTEXT_RESET";
     const requestedUrl = shouldPreserveCurrentUrl
@@ -10255,8 +10525,8 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
       status(`URL: ${state.url}`);
       const currentHost = getHostFromUrl(state.url);
       simpleFastPathCandidate = false;
-      if (step === 1 && shouldResetTaskContextToGoogle(state, goalMem, searchEngineCompareGoal)) {
-        await triggerEscapeHatch(step, `Task context mismatch on ${currentHost || "unknown-host"}. Resetting to Google before executing the new task.`, "CONTEXT_RESET", { targetUrl: "https://www.google.com/" });
+      if (step === 1 && shouldResetTaskContextToSearchEngine(state, goalMem, searchEngineCompareGoal)) {
+        await triggerEscapeHatch(step, `Task context mismatch on ${currentHost || "unknown-host"}. Resetting to DuckDuckGo before executing the new task.`, "CONTEXT_RESET", { targetUrl: "https://duckduckgo.com/" });
         continue;
       }
       if (directNavigationTargetHost && hostMatchesExpectedHost(currentHost, directNavigationTargetHost)) {
@@ -10281,7 +10551,7 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
         !searchEngineCompareGoal &&
         step >= DIRECT_NAV_MIN_STEP &&
         directTargetUrl &&
-        isGoogleSearchResultsUrl(state.url)
+        (isGoogleSearchResultsUrl(state.url) || isDuckDuckGoSearchResultsUrl(state.url))
       ) {
         const directHost = getHostFromUrl(directTargetUrl);
         const recentLog = taskLog.slice(-12).join("\n").toLowerCase();
@@ -10291,7 +10561,7 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
         // consider this a true "search loop" before jumping away.
         const hasSearchLoopSignal = hasSubmit && hasGetAll;
         if (directHost && directHost !== "google.com" && hasSearchLoopSignal) {
-          await triggerEscapeHatch(step, `Search loop detected on Google results. Jumping directly to ${directHost}.`, "DIRECT_NAV", { targetUrl: directTargetUrl });
+          await triggerEscapeHatch(step, `Search loop detected on search results. Jumping directly to ${directHost}.`, "DIRECT_NAV", { targetUrl: directTargetUrl });
           continue;
         }
       }
@@ -10379,6 +10649,36 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
           url: state.url
         });
 
+        const isInteractiveCaptcha = await page.evaluate(() => {
+          const interactiveSelectors = [
+            'iframe[src*="recaptcha"][src*="anchor"]',
+            'iframe[src*="hcaptcha.com/captcha"]',
+            'iframe[src*="challenges.cloudflare.com"]',
+            'iframe[src*="arkoselabs.com"]',
+            'iframe[src*="funcaptcha.com"]',
+            '[data-sitekey]',
+            '.cf-turnstile',
+            '#challenge-form'
+          ];
+          return interactiveSelectors.some(selector => !!document.querySelector(selector));
+        }).catch(() => false);
+
+        if (isInteractiveCaptcha && checks === 1) {
+          requiresHuman = true;
+          errLog(`Interactive CAPTCHA detected on first check — immediate human handoff for ${state.url}`);
+          broadcast("human_needed", {
+            msg: `Interactive CAPTCHA on ${state.url} — needs a human to solve it. Please solve it in the browser window then click Resume.`,
+            checks: 1,
+            limit: CAPTCHA_HUMAN_CHECK_LIMIT,
+            unresolvedCycles: 1,
+            escalateAt: 1,
+            url: state.url,
+            bridgeUrl: "/human-bridge",
+            interactive: true
+          });
+          break;
+        }
+
         const notice = `${captcha.reason}. Attempting automated solve (${checks}/${CAPTCHA_HUMAN_CHECK_LIMIT}) on ${state.url}`;
         status(notice);
         stepLogMsg(`Step ${step}: captcha-attempt ${checks}/${CAPTCHA_HUMAN_CHECK_LIMIT} on ${state.url}`);
@@ -10396,7 +10696,7 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
             errLog(`CAPTCHA attempt ${attempt}/${CAPTCHA_HUMAN_CHECK_LIMIT} failed: ${err.message}`);
             stepLogMsg(`Step captcha: failed attempt ${attempt}/${CAPTCHA_HUMAN_CHECK_LIMIT} on ${currentCaptchaState.url}`);
             if (captchaAttemptFailures >= 3 || attempt >= 3) {
-              await triggerEscapeHatch(step, `CAPTCHA flow misfired after ${attempt} attempts; recovering from suspected false positive or stale selector state.`, "CAPTCHA_ESCAPE", { targetUrl: "https://www.google.com/", failedAction: "captcha", failedSelector: escapeContext.lastFailedSelector || "" });
+              await triggerEscapeHatch(step, `CAPTCHA flow misfired after ${attempt} attempts; recovering from suspected false positive or stale selector state.`, "CAPTCHA_ESCAPE", { targetUrl: "https://duckduckgo.com/", failedAction: "captcha", failedSelector: escapeContext.lastFailedSelector || "" });
               currentCaptchaState = finalState;
               break;
             }
@@ -10415,7 +10715,7 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
             break;
           }
           if (attempt >= 3) {
-            await triggerEscapeHatch(step, `CAPTCHA still present after ${attempt} automated attempts; recovering instead of continuing blind retries.`, "CAPTCHA_ESCAPE", { targetUrl: "https://www.google.com/", failedAction: "captcha" });
+            await triggerEscapeHatch(step, `CAPTCHA still present after ${attempt} automated attempts; recovering instead of continuing blind retries.`, "CAPTCHA_ESCAPE", { targetUrl: "https://duckduckgo.com/", failedAction: "captcha" });
             currentCaptchaState = finalState;
             break;
           }
@@ -10423,8 +10723,8 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
         }
 
         if (!solved) {
-          const recoveredToGoogle = hostMatchesExpectedHost(getHostFromUrl(finalState.url), "google.com");
-          if (recoveredToGoogle) {
+          const recoveredToSearchEngine = hostMatchesExpectedHost(getHostFromUrl(finalState.url), "duckduckgo.com");
+          if (recoveredToSearchEngine) {
             captchaDetectionStreakByPage.delete(pageKey);
             clearHumanBridgeState();
             await sleepLikeHuman(350, page);
@@ -10512,12 +10812,19 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
         ((step - lastInstinctStep) >= INSTINCT_SAMPLE_EVERY_STEPS);
 
       const instinct = shouldRefreshInstinct
-        ? await getReasonerInstinct(goal, state, visionFeedback, taskLog, models, latestKnowledgeContext)
+        ? await getReasonerInstinct(goal, state, visionFeedback, taskLog, models, latestKnowledgeContext, taskContext, goalMem)
         : (lastInstinct || {
-            instinct: "Focus on the current page state.",
-            risk: "medium",
-            next_focus: "current page",
-            caution: "keep the next step small"
+            task: String(goal || "browser task"),
+            currentSubtask: taskContext.currentSubtask,
+            pageClassification: inferPageTypeFromUrl(state?.url, state?.title),
+            goalProgress: { completed: 0, total: 0, percent: null },
+            subtaskStatus: "not_started",
+            relevantAnchors: [],
+            nearbyContext: [],
+            competingCandidates: [],
+            rejectedEvidence: [],
+            evidenceStrength: "low",
+            evidenceGaps: []
           });
 
       if (shouldRefreshInstinct) {
@@ -10525,9 +10832,8 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
         lastInstinctStep = step;
       }
 
-      if (instinct?.instinct) {
-        think(`Instinct: ${instinct.instinct}${instinct?.next_focus ? ` | focus: ${instinct.next_focus}` : ""}`);
-      }
+      const instinctReportText = formatInstinctEvidencePacket(instinct);
+      think(instinctReportText);
 
       let confusionResearch = null;
       if (!simpleBrowsingModeActive && shouldRunConfusionResearch(goal, state, taskLog, failures, step)) {
@@ -10560,22 +10866,12 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
       else if (step % 5 === 0) narrate(`Still working on it — step ${step}. Current page: ${state.url}`);
 
       if (step > 1 && step % 5 === 0 && chatId) {
-        const summaryLines = [];
-        if (instinct?.instinct) summaryLines.push(instinct.instinct);
-        if (instinct?.next_focus) summaryLines.push(`Focus: ${instinct.next_focus}`);
-        if (instinct?.risk) summaryLines.push(`Risk: ${instinct.risk}`);
-        if (instinct?.caution) summaryLines.push(`Caution: ${instinct.caution}`);
-        if (summaryLines.length) {
-          appendTaskChatMessage("assistant", `Reasoner summary (step ${step}):\n` + summaryLines.join("\n"), { reasoner_summary: true, step, completed: false });
-        }
+        appendTaskChatMessage("assistant", instinctReportText, { instinct_report: true, step, completed: false });
       }
       
       const instinctFeedback = [
         visionFeedback,
-        instinct?.instinct ? `Reasoner instinct: ${instinct.instinct}` : "",
-        instinct?.risk ? `Reasoner risk: ${instinct.risk}` : "",
-        instinct?.next_focus ? `Reasoner focus: ${instinct.next_focus}` : "",
-        instinct?.caution ? `Reasoner caution: ${instinct.caution}` : "",
+        instinctReportText,
         buildConfusionHintContext(confusionResearch),
         efficiencyCheck?.alreadyHave ? `💡 EFFICIENCY: ${efficiencyCheck.suggestion}` : "",
         userGuidance?.directiveText ? `🧭 ${userGuidance.directiveText}` : ""
@@ -10597,7 +10893,8 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
           simpleFastPathCandidate,
           directNavigationTarget,
           taskContext,
-          knowledgeContext: latestKnowledgeContext
+          knowledgeContext: latestKnowledgeContext,
+          instinctReport: instinct
         }));
       } catch (err) {
         errLog("Planning failed: " + err.message);
@@ -10785,6 +11082,16 @@ async function runTask(goal, models, chatId, browserRuntime = null, userId = nul
         }
       }
 
+
+      const firstPlannedAction = Array.isArray(plan.actions) ? plan.actions[0] : null;
+      if (firstPlannedAction) {
+        const params = firstPlannedAction.params || {};
+        const target = params.selector || params.url || params.text || params.query || "";
+        taskContext.currentSubtask = [
+          `Planner step: ${firstPlannedAction.action}${target ? ` ${target}` : ""}`,
+          plan.reasoning
+        ].filter(Boolean).join(" | ").slice(0, 320);
+      }
 
       if (plan.reasoning) think(plan.reasoning);
 
@@ -12667,12 +12974,12 @@ async function handleBrowserCrash(reason) {
 
     // Navigate back to the last stable page before the crash, or START_URL as fallback
     const stableUrl = loadStablePage();
-    const recoveryUrl = stableUrl || process.env.START_URL || "https://www.google.com";
+    const recoveryUrl = stableUrl || process.env.START_URL || "https://duckduckgo.com";
     console.log(`↩️  Restoring to last stable page: ${recoveryUrl}`);
     broadcast("status", { msg: `↩️ Restoring to last stable page: ${recoveryUrl}` });
     await page.goto(recoveryUrl, { waitUntil: "domcontentloaded", timeout: 30000 }).catch((err) => {
-      console.warn(`⚠️  Could not restore stable page (${err.message}) — falling back to Google`);
-      return page.goto("https://www.google.com", { waitUntil: "domcontentloaded", timeout: 20000 }).catch(() => {});
+      console.warn(`⚠️  Could not restore stable page (${err.message}) — falling back to DuckDuckGo`);
+      return page.goto("https://duckduckgo.com", { waitUntil: "domcontentloaded", timeout: 20000 }).catch(() => {});
     });
 
     _browserRestartCount = 0; // reset streak on successful restart
@@ -12744,7 +13051,7 @@ async function handleBrowserCrash(reason) {
     const currentUrl = (() => {
       try { return page.url(); } catch { return "about:blank"; }
     })();
-    const startUrl = process.env.START_URL || "https://www.google.com";
+    const startUrl = process.env.START_URL || "https://duckduckgo.com";
     if (!currentUrl || currentUrl === "about:blank") {
       await page.goto(startUrl, { waitUntil: "domcontentloaded" });
       saveStablePage(startUrl);

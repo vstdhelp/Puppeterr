@@ -131,9 +131,10 @@ submitting forms, navigating). Interprets tasks and produces actionable
 steps; may enter fallback loops when selectors fail or page state changes
 unexpectedly.
 
-**Instinct** — Monitors Planner's behavior and detects confusion, repeated
-failures, invalid selectors, or stalled progress. Escalates warnings and can
-request human intervention; acts as a safety layer against infinite loops.
+**Instinct** — Compresses page, Vision, Element-Map, Strider, Memory, and task
+history into a structured evidence packet for the Planner's current subtask.
+It ranks relevant anchors, nearby context, competing candidates, and evidence
+gaps; it does not choose actions or make planning decisions.
 
 **Reasoner** — Generates natural-language explanations of agent activity,
 requests guidance from the user, and responds to user steering. The
@@ -353,11 +354,9 @@ If you hit a missing-browser or missing-library error on first run:
    ```
 2. **If not found, install Chromium via Playwright:**
    ```
-   npx playwright install chromium
+   npx playwright install chromium && npx playwright install chrome
    ```
-   For real Chrome specifically (preferred — see Known Issues on
-   fingerprinting), use `npx playwright install chrome` instead.
-3. **Install required system libraries and XVFB in one pass:**
+   3. **Install required system libraries and XVFB in one pass:**
    ```
    sudo apt-get update
    sudo apt-get install -y \

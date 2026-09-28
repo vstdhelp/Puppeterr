@@ -3181,20 +3181,58 @@ const FRONTEND_HTML = String.raw`
 
       function applyEmojiShortcodes(text) {
         const map = {
-          ":rocket:": iconMarkup("spark"),
-          ":brain:": iconMarkup("bot"),
-          ":sparkles:": iconMarkup("spark"),
-          ":fire:": iconMarkup("spark"),
-          ":check:": iconMarkup("check"),
-          ":x:": iconMarkup("close"),
-          ":warning:": iconMarkup("alert"),
-          ":robot:": iconMarkup("bot"),
-          ":smile:": iconMarkup("spark"),
-          ":party:": iconMarkup("spark"),
-          ":idea:": iconMarkup("spark")
+          ":rocket:": "🚀", ":sparkles:": "✨", ":fire:": "🔥", ":tada:": "🎉",
+          ":smile:": "😄", ":smiley:": "😃", ":grin:": "😁", ":laughing:": "😆",
+          ":joy:": "😂", ":wink:": "😉", ":blush:": "😊", ":heart_eyes:": "😍",
+          ":thinking:": "🤔", ":thumbsup:": "👍", ":+1:": "👍", ":thumbsdown:": "👎",
+          ":-1:": "👎", ":clap:": "👏", ":wave:": "👋", ":pray:": "🙏",
+          ":muscle:": "💪", ":eyes:": "👀", ":point_up:": "☝️", ":point_down:": "👇",
+          ":point_left:": "👈", ":point_right:": "👉", ":ok_hand:": "👌",
+          ":raised_hands:": "🙌", ":handshake:": "🤝", ":100:": "💯", ":heart:": "❤️",
+          ":broken_heart:": "💔", ":heartbeat:": "💓", ":star:": "⭐", ":star2:": "🌟",
+          ":zap:": "⚡", ":boom:": "💥", ":bulb:": "💡", ":idea:": "💡",
+          ":warning:": "⚠️", ":x:": "❌", ":white_check_mark:": "✅", ":check:": "✔️",
+          ":check_mark:": "✔️", ":no_entry:": "⛔", ":exclamation:": "❗", ":question:": "❓",
+          ":robot:": "🤖", ":brain:": "🧠", ":computer:": "💻", ":keyboard:": "⌨️",
+          ":gear:": "⚙️", ":wrench:": "🔧", ":hammer:": "🔨", ":lock:": "🔒",
+          ":unlock:": "🔓", ":key:": "🔑", ":mag:": "🔍", ":mag_right:": "🔎",
+          ":bell:": "🔔", ":clock:": "🕐", ":hourglass:": "⏳", ":alarm_clock:": "⏰",
+          ":calendar:": "📅", ":memo:": "📝", ":pencil:": "📝", ":page_facing_up:": "📄",
+          ":clipboard:": "📋", ":file_folder:": "📁", ":package:": "📦", ":inbox_tray:": "📥",
+          ":outbox_tray:": "📤", ":envelope:": "✉️", ":email:": "📧", ":link:": "🔗",
+          ":paperclip:": "📎", ":pushpin:": "📌", ":triangular_flag:": "🚩",
+          ":chart_with_upwards_trend:": "📈", ":chart_with_downwards_trend:": "📉", ":bar_chart:": "📊",
+          ":moneybag:": "💰", ":dollar:": "💵", ":credit_card:": "💳", ":gift:": "🎁",
+          ":balloon:": "🎈", ":confetti_ball:": "🎊", ":partying_face:": "🥳", ":party:": "🥳",
+          ":trophy:": "🏆", ":medal:": "🏅", ":crown:": "👑", ":gem:": "💎",
+          ":sunny:": "☀️", ":cloud:": "☁️", ":snowflake:": "❄️", ":umbrella:": "☂️",
+          ":rainbow:": "🌈", ":earth_americas:": "🌎", ":globe_with_meridians:": "🌐",
+          ":airplane:": "✈️", ":car:": "🚗", ":dog:": "🐶", ":cat:": "🐱",
+          ":fox:": "🦊", ":panda_face:": "🐼", ":unicorn:": "🦄", ":coffee:": "☕",
+          ":tea:": "🍵", ":beer:": "🍺", ":pizza:": "🍕", ":hamburger:": "🍔",
+          ":cookie:": "🍪", ":cake:": "🍰", ":apple:": "🍎", ":banana:": "🍌",
+          ":sos:": "🆘", ":new:": "🆕", ":ok:": "🆗", ":up:": "🆙", ":vs:": "🆚",
+          ":recycle:": "♻️", ":wheelchair:": "♿", ":radioactive:": "☢️", ":biohazard:": "☣️",
+          ":peace:": "☮️", ":atom_symbol:": "⚛️", ":infinity:": "♾️", ":heavy_plus_sign:": "➕",
+          ":heavy_minus_sign:": "➖", ":heavy_division_sign:": "➗", ":arrow_right:": "➡️",
+          ":arrow_left:": "⬅️", ":arrow_up:": "⬆️", ":arrow_down:": "⬇️", ":repeat:": "🔁",
+          ":shuffle:": "🔀", ":musical_note:": "🎵", ":notes:": "🎶", ":microphone:": "🎤",
+          ":headphones:": "🎧", ":camera:": "📷", ":video_camera:": "📹", ":tv:": "📺",
+          ":speech_balloon:": "💬", ":thought_balloon:": "💭", ":loudspeaker:": "📢",
+          ":mega:": "📣", ":raised_hand:": "✋", ":love_letter:": "💌", ":sparkling_heart:": "💖",
+          ":yellow_heart:": "💛", ":green_heart:": "💚", ":blue_heart:": "💙", ":purple_heart:": "💜",
+          ":relieved:": "😌", ":sleeping:": "😴", ":yum:": "😋", ":stuck_out_tongue:": "😛",
+          ":sunglasses:": "😎", ":worried:": "😟", ":confused:": "😕", ":cry:": "😢",
+          ":sob:": "😭", ":angry:": "😠", ":rage:": "😡", ":scream:": "😱",
+          ":fearful:": "😨", ":cold_sweat:": "😰", ":sweat_smile:": "😅", ":tired_face:": "😫",
+          ":weary:": "😩", ":triumph:": "😤", ":neutral_face:": "😐", ":expressionless:": "😑",
+          ":no_mouth:": "😶", ":innocent:": "😇", ":smirk:": "😏", ":unamused:": "😒",
+          ":zzz:": "💤", ":dizzy_face:": "😵", ":astonished:": "😲", ":open_mouth:": "😮",
+          ":hushed:": "😯", ":flushed:": "😳"
         };
-        return String(text || "").replace(/:[a-z_]+:/g, function(token) {
-          return Object.prototype.hasOwnProperty.call(map, token) ? map[token] : token;
+        return String(text || "").replace(/:[a-z0-9_+-]+:/gi, function(token) {
+          const key = token.toLowerCase();
+          return Object.prototype.hasOwnProperty.call(map, key) ? map[key] : token;
         });
       }
 
