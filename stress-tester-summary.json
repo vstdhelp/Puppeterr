@@ -1,80 +1,84 @@
 {
-  "generatedAt": "2026-09-27T16:42:59.599Z",
+  "generatedAt": "2026-09-28T22:51:44.315Z",
   "promptSource": "bank",
-  "totalRuns": 203,
+  "totalRuns": 281,
   "completedRuns": 5,
-  "incompleteRuns": 198,
-  "successRate": 0.0246,
+  "incompleteRuns": 276,
+  "successRate": 0.0178,
   "tierBreakdown": [
     {
       "tier": "A",
-      "total": 27,
+      "total": 39,
       "completed": 4,
-      "successRate": 0.1481
+      "successRate": 0.1026
     },
     {
       "tier": "B",
-      "total": 56,
+      "total": 74,
       "completed": 1,
-      "successRate": 0.0179
+      "successRate": 0.0135
     },
     {
       "tier": "C",
-      "total": 48,
+      "total": 60,
       "completed": 0,
       "successRate": 0
     },
     {
       "tier": "D",
-      "total": 36,
+      "total": 48,
       "completed": 0,
       "successRate": 0
     },
     {
       "tier": "E",
-      "total": 15,
+      "total": 25,
       "completed": 0,
       "successRate": 0
     },
     {
       "tier": "F",
-      "total": 21,
+      "total": 35,
       "completed": 0,
       "successRate": 0
     }
   ],
   "diagnosticsCoverage": {
-    "structuredSelfDiagnosisRuns": 180,
-    "missingOrUnparsableRuns": 23
+    "structuredSelfDiagnosisRuns": 231,
+    "missingOrUnparsableRuns": 50
   },
   "recurringProblems": [
     {
       "type": "other",
-      "count": 178
+      "count": 229
     },
     {
       "type": "uncertainty_or_fallback",
-      "count": 7
+      "count": 45
     },
     {
-      "type": "timing_drift",
-      "count": 3
+      "type": "navigation_failure",
+      "count": 21
     },
     {
       "type": "selector_error",
-      "count": 3
+      "count": 6
+    },
+    {
+      "type": "retry_loop",
+      "count": 5
+    },
+    {
+      "type": "timing_drift",
+      "count": 4
     },
     {
       "type": "planner_hallucination",
       "count": 3
     },
     {
-      "type": "retry_loop",
-      "count": 2
-    },
-    {
-      "type": "navigation_failure",
-      "count": 2
+      "type": "supervisor_block",
+      "count": 3
     }
   ],
   "bugFindings": [
@@ -83,7 +87,7 @@
       "title": "Infrastructure or uncategorized failure",
       "whyLikely": "Likely service/session/concurrency issue outside standard browser action categories.",
       "category": "other",
-      "count": 178,
+      "count": 229,
       "sampleRuns": [
         {
           "cycle": 2,
@@ -107,7 +111,7 @@
       "title": "Self-diagnosis block missing or unparsable",
       "whyLikely": "Prompt requested structured diagnosis markers, but final response did not emit valid JSON in expected tags.",
       "category": "other",
-      "count": 23,
+      "count": 50,
       "sampleRuns": [
         {
           "cycle": 1,
@@ -131,7 +135,7 @@
       "title": "Fallback/uncertainty path triggered",
       "whyLikely": "Likely primary strategy failed and fallback engaged; quality depends on fallback relevance.",
       "category": "uncertainty_or_fallback",
-      "count": 7,
+      "count": 45,
       "sampleRuns": [
         {
           "cycle": 1,
@@ -151,11 +155,35 @@
       ]
     },
     {
+      "id": "issue_navigation_failure",
+      "title": "Navigation path fails or target page unreachable",
+      "whyLikely": "Likely DNS/domain issue, blocked destination, or planner recovery choosing non-progress navigation.",
+      "category": "navigation_failure",
+      "count": 21,
+      "sampleRuns": [
+        {
+          "cycle": 3,
+          "timestamp": "2026-08-21T21:17:55.305Z",
+          "evidence": "goto failed: error"
+        },
+        {
+          "cycle": 3,
+          "timestamp": "2026-08-21T21:17:55.305Z",
+          "evidence": "Matched pattern /navigation/i in log.json"
+        },
+        {
+          "cycle": 1,
+          "timestamp": "2026-09-28T21:27:05.192Z",
+          "evidence": "goto failed: error"
+        }
+      ]
+    },
+    {
       "id": "captcha_false_positive_non_challenge_page",
       "title": "CAPTCHA detector fires on normal content pages",
       "whyLikely": "Challenge heuristics likely over-weight text/weak signals and trigger solve flow without a real gate.",
       "category": "navigation_failure",
-      "count": 4,
+      "count": 11,
       "sampleRuns": [
         {
           "cycle": 1,
@@ -175,35 +203,11 @@
       ]
     },
     {
-      "id": "issue_timing_drift",
-      "title": "Timeout/wait sequencing mismatch",
-      "whyLikely": "Likely waits tied to wrong condition (e.g., URL change) or async state settling slower than thresholds.",
-      "category": "timing_drift",
-      "count": 3,
-      "sampleRuns": [
-        {
-          "cycle": 2,
-          "timestamp": "2026-08-21T20:56:51.186Z",
-          "evidence": "Matched pattern /timed out/i in final_answer"
-        },
-        {
-          "cycle": 3,
-          "timestamp": "2026-08-21T21:13:41.834Z",
-          "evidence": "Matched pattern /timed out/i in final_answer"
-        },
-        {
-          "cycle": 3,
-          "timestamp": "2026-08-21T21:17:55.305Z",
-          "evidence": "Matched pattern /timed out/i in final_answer"
-        }
-      ]
-    },
-    {
       "id": "issue_selector_error",
       "title": "Selector resolution errors during actions",
       "whyLikely": "Likely stale selectors, hidden elements, or page state changed before interaction completed.",
       "category": "selector_error",
-      "count": 3,
+      "count": 6,
       "sampleRuns": [
         {
           "cycle": 2,
@@ -219,6 +223,54 @@
           "cycle": 1,
           "timestamp": "2026-08-21T21:16:14.376Z",
           "evidence": "press selector issue: #search-box"
+        }
+      ]
+    },
+    {
+      "id": "issue_retry_loop",
+      "title": "Agent repeats same action without progress",
+      "whyLikely": "Likely loop detection too weak or recovery policy re-issuing equivalent steps.",
+      "category": "retry_loop",
+      "count": 5,
+      "sampleRuns": [
+        {
+          "cycle": 3,
+          "timestamp": "2026-08-21T20:29:46.246Z",
+          "evidence": "Repeated action signature goto| x3"
+        },
+        {
+          "cycle": 2,
+          "timestamp": "2026-08-21T20:43:11.212Z",
+          "evidence": "Repeated action signature goto| x3"
+        },
+        {
+          "cycle": 10,
+          "timestamp": "2026-09-28T21:32:25.180Z",
+          "evidence": "Matched pattern /loop/i in final_answer"
+        }
+      ]
+    },
+    {
+      "id": "issue_timing_drift",
+      "title": "Timeout/wait sequencing mismatch",
+      "whyLikely": "Likely waits tied to wrong condition (e.g., URL change) or async state settling slower than thresholds.",
+      "category": "timing_drift",
+      "count": 4,
+      "sampleRuns": [
+        {
+          "cycle": 2,
+          "timestamp": "2026-08-21T20:56:51.186Z",
+          "evidence": "Matched pattern /timed out/i in final_answer"
+        },
+        {
+          "cycle": 3,
+          "timestamp": "2026-08-21T21:13:41.834Z",
+          "evidence": "Matched pattern /timed out/i in final_answer"
+        },
+        {
+          "cycle": 3,
+          "timestamp": "2026-08-21T21:17:55.305Z",
+          "evidence": "Matched pattern /timed out/i in final_answer"
         }
       ]
     },
@@ -247,40 +299,26 @@
       ]
     },
     {
-      "id": "issue_retry_loop",
-      "title": "Agent repeats same action without progress",
-      "whyLikely": "Likely loop detection too weak or recovery policy re-issuing equivalent steps.",
-      "category": "retry_loop",
-      "count": 2,
+      "id": "issue_supervisor_block",
+      "title": "Supervisor blocks otherwise useful plan",
+      "whyLikely": "Likely conservative risk gate or malformed supervisor signal causing overblocking.",
+      "category": "supervisor_block",
+      "count": 3,
       "sampleRuns": [
         {
-          "cycle": 3,
-          "timestamp": "2026-08-21T20:29:46.246Z",
-          "evidence": "Repeated action signature goto| x3"
+          "cycle": 14,
+          "timestamp": "2026-09-28T21:38:28.303Z",
+          "evidence": "Matched pattern /supervisor block/i in self_diagnosis"
         },
         {
-          "cycle": 2,
-          "timestamp": "2026-08-21T20:43:11.212Z",
-          "evidence": "Repeated action signature goto| x3"
-        }
-      ]
-    },
-    {
-      "id": "issue_navigation_failure",
-      "title": "Navigation path fails or target page unreachable",
-      "whyLikely": "Likely DNS/domain issue, blocked destination, or planner recovery choosing non-progress navigation.",
-      "category": "navigation_failure",
-      "count": 2,
-      "sampleRuns": [
-        {
-          "cycle": 3,
-          "timestamp": "2026-08-21T21:17:55.305Z",
-          "evidence": "goto failed: error"
+          "cycle": 15,
+          "timestamp": "2026-09-28T21:39:13.303Z",
+          "evidence": "Matched pattern /supervisor block/i in self_diagnosis"
         },
         {
-          "cycle": 3,
-          "timestamp": "2026-08-21T21:17:55.305Z",
-          "evidence": "Matched pattern /navigation/i in log.json"
+          "cycle": 16,
+          "timestamp": "2026-09-28T21:39:48.908Z",
+          "evidence": "Matched pattern /supervisor block/i in self_diagnosis"
         }
       ]
     },
@@ -305,7 +343,7 @@
       "title": "Infrastructure or uncategorized failure",
       "whyLikely": "Likely service/session/concurrency issue outside standard browser action categories.",
       "category": "other",
-      "count": 178,
+      "count": 229,
       "sampleRuns": [
         {
           "cycle": 2,
@@ -324,8 +362,8 @@
         }
       ]
     },
-    "infraFailureSignals": 201,
+    "infraFailureSignals": 279,
     "recommendation": "Address top bugFinding entries first; they include likely causes and sample evidence to reproduce."
   },
-  "latestRunTimestamp": "2026-09-27T16:42:59.590Z"
+  "latestRunTimestamp": "2026-09-28T22:51:44.294Z"
 }

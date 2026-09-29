@@ -62,7 +62,6 @@ const PROMPT_BANK = [
   { tier: "D", text: `check if there's a python package for parsing pdfs and tell me the most popular one` },
   { tier: "D", text: `look up the difference between npm and yarn and summarize it in 3 bullet points` },
   { tier: "E", text: `go to desmos and graph y = x^2 - 4, tell me where it crosses the x-axis` },
-  { tier: "E", text: `pull up codepen, open whatever's trending, and tell me what's actually showing in the preview` },
   { tier: "E", text: `check colorhunt.co, open a palette, and give me the hex codes` },
   { tier: "E", text: `there's a pdf linked somewhere on python's docs site — find one, open it, tell me what's on the first page` },
   { tier: "E", text: `go to draw.io, make two boxes with an arrow between them, tell me if it actually looks right` },
